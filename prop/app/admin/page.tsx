@@ -268,7 +268,7 @@ export default function AdminPage() {
                   <div className="space-y-4">
                     <input value={memberForm.name} onChange={e => setMemberForm({ ...memberForm, name: e.target.value })}
                       placeholder="NAME" className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded text-sm font-mono text-white focus:outline-none focus:border-[#5BA88C]/50 transition-all placeholder-gray-600" />
-                    <div className="grid grid-cols-2 gap-4">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <input value={memberForm.rollNo} onChange={e => setMemberForm({ ...memberForm, rollNo: e.target.value })}
                         placeholder="ROLL_NO" className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded text-sm font-mono text-white focus:outline-none focus:border-[#5BA88C]/50 transition-all placeholder-gray-600" />
                       <select value={memberForm.gender} onChange={e => setMemberForm({ ...memberForm, gender: e.target.value })}
@@ -279,7 +279,7 @@ export default function AdminPage() {
                         <option value="Other">OTHER</option>
                       </select>
                     </div>
-                    <div className="grid grid-cols-2 gap-4">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <input value={memberForm.phone} onChange={e => setMemberForm({ ...memberForm, phone: e.target.value })}
                         placeholder="PHONE" className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded text-sm font-mono text-white focus:outline-none focus:border-[#5BA88C]/50 transition-all placeholder-gray-600" />
                       <input value={memberForm.email} onChange={e => setMemberForm({ ...memberForm, email: e.target.value })}

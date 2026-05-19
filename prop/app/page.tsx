@@ -58,11 +58,11 @@ export default function Dashboard() {
             </div>
           </div>
 
-          <div className="flex items-center gap-4">
-            <Link href="/team" className="group flex items-center gap-2 px-5 py-2.5 bg-white/5 hover:bg-white/10 border border-white/10 rounded-lg text-sm font-mono transition-all">
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 w-full sm:w-auto">
+            <Link href="/team" className="group flex items-center justify-center gap-2 px-5 py-2.5 bg-white/5 hover:bg-white/10 border border-white/10 rounded-lg text-sm font-mono transition-all">
               [ <Users size={14} className="text-[#5BA88C]" /> TEAM_DATA ]
             </Link>
-            <Link href="/deadlines" className="group flex items-center gap-2 px-5 py-2.5 bg-[#D4763C] hover:bg-[#B85E2A] text-black border border-[#D4763C] rounded-lg text-sm font-bold shadow-[0_0_20px_rgba(212,118,60,0.3)] transition-all">
+            <Link href="/deadlines" className="group flex items-center justify-center gap-2 px-5 py-2.5 bg-[#D4763C] hover:bg-[#B85E2A] text-black border border-[#D4763C] rounded-lg text-sm font-bold shadow-[0_0_20px_rgba(212,118,60,0.3)] transition-all">
               TRACK_DEADLINES <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
             </Link>
           </div>
