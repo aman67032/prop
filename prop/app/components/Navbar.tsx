@@ -3,17 +3,16 @@ import Link from "next/link";
 import Image from "next/image";
 import { useAuth } from "../context/AuthContext";
 import { useState } from "react";
+import { Zap, LayoutDashboard, LogOut } from "lucide-react";
 
 export default function Navbar() {
   const { user, logout } = useAuth();
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <nav className="sticky top-0 z-50 backdrop-blur-xl border-b" style={{
-      background: "linear-gradient(135deg, rgba(27,58,92,0.95), rgba(27,58,92,0.85))",
-      borderColor: "rgba(212,118,60,0.3)"
-    }}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <nav className="sticky top-0 z-50 backdrop-blur-md border-b border-white/10 bg-[#050505]/80">
+      <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-[#D4763C]/50 to-transparent" />
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
         <div className="flex justify-between items-center h-16">
           <Link href="/" className="flex items-center gap-3 group">
             <Image 
@@ -21,82 +20,84 @@ export default function Navbar() {
               alt="Aarambh Logo" 
               width={40} 
               height={40} 
-              className="object-contain drop-shadow-md"
+              className="object-contain drop-shadow-[0_0_8px_rgba(212,118,60,0.5)] group-hover:scale-105 transition-transform"
             />
             <div>
-              <span className="text-white font-bold text-lg tracking-tight">Aarambh&apos;26</span>
-              <span className="block text-xs" style={{ color: "#D4763C" }}>Command Center</span>
+              <span className="text-white font-mono font-bold text-lg tracking-tight">Aarambh&apos;26</span>
+              <span className="block text-[10px] font-mono tracking-widest uppercase text-[#D4763C]">SYS.CMD_CENTER</span>
             </div>
           </Link>
 
           {/* Desktop Nav */}
-          <div className="hidden md:flex items-center gap-1">
+          <div className="hidden md:flex items-center gap-2">
             {[
-              { href: "/", label: "Dashboard" },
-              { href: "/team", label: "Team" },
-              { href: "/deadlines", label: "Deadlines" },
+              { href: "/", label: "DASHBOARD" },
+              { href: "/team", label: "TEAM_DATA" },
+              { href: "/deadlines", label: "DEADLINES" },
             ].map(link => (
               <Link key={link.href} href={link.href}
-                className="px-4 py-2 rounded-lg text-sm font-medium text-gray-300 hover:text-white hover:bg-white/10 transition-all">
-                {link.label}
+                className="px-4 py-2 rounded-md text-xs font-mono text-gray-400 hover:text-white hover:bg-white/5 border border-transparent hover:border-white/10 transition-all">
+                [{link.label}]
               </Link>
             ))}
             {user ? (
-              <div className="flex items-center gap-3 ml-4">
+              <div className="flex items-center gap-4 ml-4 pl-4 border-l border-white/10">
                 <Link href={user.role === "super_auth" ? "/admin" : "/organizer"}
-                  className="px-4 py-2 rounded-lg text-sm font-semibold text-white transition-all"
-                  style={{ background: "linear-gradient(135deg, #D4763C, #B85E2A)" }}>
-                  {user.role === "super_auth" ? "⚡ Admin" : "📋 Panel"}
+                  className="flex items-center gap-2 px-4 py-1.5 rounded text-xs font-mono font-bold text-black bg-[#5BA88C] hover:bg-[#4a8a72] shadow-[0_0_10px_rgba(91,168,140,0.3)] transition-all">
+                  {user.role === "super_auth" ? <><Zap size={14} /> ADMIN_OVR</> : <><LayoutDashboard size={14} /> PNL_ACCESS</>}
                 </Link>
-                <div className="flex items-center gap-2">
-                  <div className="w-8 h-8 rounded-full flex items-center justify-center text-white text-xs font-bold"
-                    style={{ background: "#5BA88C" }}>
+                <div className="flex items-center gap-3">
+                  <div className="w-7 h-7 rounded border border-[#D4763C]/30 flex items-center justify-center text-[#D4763C] text-xs font-mono bg-[#D4763C]/10">
                     {user.name.charAt(0)}
                   </div>
-                  <button onClick={logout} className="text-xs text-gray-400 hover:text-red-400 transition-colors">
-                    Logout
+                  <button onClick={logout} className="text-gray-500 hover:text-[#EF4444] transition-colors" title="Disconnect">
+                    <LogOut size={16} />
                   </button>
                 </div>
               </div>
             ) : (
               <Link href="/login"
-                className="ml-4 px-5 py-2 rounded-lg text-sm font-semibold text-white transition-all hover:scale-105"
-                style={{ background: "linear-gradient(135deg, #D4763C, #B85E2A)" }}>
-                Login
+                className="ml-4 px-5 py-2 rounded text-xs font-mono font-bold text-black bg-[#D4763C] hover:bg-[#b85e2a] shadow-[0_0_10px_rgba(212,118,60,0.3)] transition-all">
+                SYS.LOGIN
               </Link>
             )}
           </div>
 
           {/* Mobile toggle */}
-          <button onClick={() => setMenuOpen(!menuOpen)} className="md:hidden text-white text-2xl">
-            {menuOpen ? "✕" : "☰"}
+          <button onClick={() => setMenuOpen(!menuOpen)} className="md:hidden text-white font-mono border border-white/10 px-3 py-1 rounded hover:bg-white/5">
+            {menuOpen ? "[X]" : "[=]"}
           </button>
         </div>
 
         {/* Mobile menu */}
         {menuOpen && (
-          <div className="md:hidden pb-4 space-y-2">
-            {["/", "/team", "/deadlines"].map(href => (
-              <Link key={href} href={href} onClick={() => setMenuOpen(false)}
-                className="block px-4 py-2 text-gray-300 hover:text-white hover:bg-white/10 rounded-lg">
-                {href === "/" ? "Dashboard" : href.slice(1).charAt(0).toUpperCase() + href.slice(2)}
+          <div className="md:hidden py-4 space-y-2 border-t border-white/10 font-mono">
+            {[
+              { href: "/", label: "DASHBOARD" },
+              { href: "/team", label: "TEAM_DATA" },
+              { href: "/deadlines", label: "DEADLINES" },
+            ].map(link => (
+              <Link key={link.href} href={link.href} onClick={() => setMenuOpen(false)}
+                className="block px-4 py-2 text-xs text-gray-400 hover:text-white hover:bg-white/5 rounded">
+                &gt; {link.label}
               </Link>
             ))}
             {user ? (
-              <>
+              <div className="pt-2 mt-2 border-t border-white/10 space-y-2">
                 <Link href={user.role === "super_auth" ? "/admin" : "/organizer"}
                   onClick={() => setMenuOpen(false)}
-                  className="block px-4 py-2 rounded-lg font-semibold text-white"
-                  style={{ background: "#D4763C" }}>
-                  {user.role === "super_auth" ? "⚡ Admin Panel" : "📋 Organizer Panel"}
+                  className="flex items-center gap-2 px-4 py-2 rounded text-xs font-bold text-black bg-[#5BA88C]">
+                  {user.role === "super_auth" ? <><Zap size={14} /> ADMIN_OVR</> : <><LayoutDashboard size={14} /> PNL_ACCESS</>}
                 </Link>
                 <button onClick={() => { logout(); setMenuOpen(false); }}
-                  className="block w-full text-left px-4 py-2 text-red-400">Logout</button>
-              </>
+                  className="flex items-center gap-2 w-full text-left px-4 py-2 text-xs text-[#EF4444] hover:bg-white/5 rounded">
+                  <LogOut size={14} /> DISCONNECT
+                </button>
+              </div>
             ) : (
               <Link href="/login" onClick={() => setMenuOpen(false)}
-                className="block px-4 py-2 rounded-lg font-semibold text-white" style={{ background: "#D4763C" }}>
-                Login
+                className="block px-4 py-2 mt-2 rounded text-xs font-bold text-black bg-[#D4763C] text-center">
+                SYS.LOGIN
               </Link>
             )}
           </div>

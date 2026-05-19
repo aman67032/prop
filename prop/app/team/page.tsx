@@ -1,18 +1,19 @@
 "use client";
 import { useEffect, useState } from "react";
 import api from "../lib/api";
-import { Network, LayoutList } from "lucide-react";
+import { Network, LayoutList, Search, Terminal } from "lucide-react";
 
 interface Member { _id: string; name: string; rollNo: string; gender: string; position: string; committee: string; cluster: string; phone: string; email: string; category: string; }
 interface Structure { organizingHeads: Member[]; committees: { name: string; heads: Member[]; volunteers: Member[]; clusterHeads: Member[]; cohortLeaders: Member[] }[]; }
 
 const catColors: Record<string, string> = {
-  organizing_head: "#D4763C", team_leader: "#1B3A5C", committee_head: "#1B3A5C",
-  cluster_head: "#5BA88C", cohort_leader: "#7CC4A8", volunteer: "#8B9DC3"
+  organizing_head: "#D4763C", team_leader: "#5BA88C", committee_head: "#5BA88C",
+  cluster_head: "#8B9DC3", cohort_leader: "#8B9DC3", volunteer: "#6B7280"
 };
+
 const catLabels: Record<string, string> = {
-  organizing_head: "Organizing Head", team_leader: "Team Leader", committee_head: "Committee Head",
-  cluster_head: "Cluster Head", cohort_leader: "Cohort Leader", volunteer: "Volunteer"
+  organizing_head: "SYS.CORE", team_leader: "LEAD.NODE", committee_head: "LEAD.NODE",
+  cluster_head: "CLUSTER.OP", cohort_leader: "COHORT.OP", volunteer: "BASE.UNIT"
 };
 
 export default function TeamPage() {
@@ -35,75 +36,96 @@ export default function TeamPage() {
   ) : allMembers;
 
   if (loading) return (
-    <div className="min-h-screen flex items-center justify-center" style={{ background: "var(--cream)" }}>
-      <div className="w-16 h-16 rounded-full border-4 border-t-transparent animate-spin" style={{ borderColor: "#D4763C", borderTopColor: "transparent" }} />
+    <div className="min-h-screen flex items-center justify-center bg-[#050505]">
+      <div className="w-16 h-16 rounded-full border-2 border-white/10 border-t-[#D4763C] animate-spin" />
     </div>
   );
 
   return (
-    <div style={{ background: "var(--cream)" }} className="min-h-screen">
+    <div className="min-h-screen bg-[#050505] text-white selection:bg-[#D4763C]/30 font-sans"
+         style={{ backgroundImage: "linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px)", backgroundSize: "30px 30px" }}>
+      
       {/* Header */}
-      <div className="py-12 px-6" style={{ background: "linear-gradient(135deg, #1B3A5C, #0F2440)" }}>
-        <div className="max-w-7xl mx-auto">
-          <h1 className="text-4xl font-black text-white mb-2">Team Structure</h1>
-          <p className="text-gray-400 mb-6">177 members powering Aarambh 2026</p>
-          <div className="flex flex-wrap gap-4">
-            <input value={search} onChange={e => setSearch(e.target.value)} placeholder="Search by name, roll no, committee..."
-              className="flex-1 min-w-[250px] px-5 py-3 rounded-xl bg-white/10 text-white placeholder-gray-400 border border-white/20 focus:outline-none focus:border-orange-400 transition-all" />
-            <div className="flex gap-2">
-              <button onClick={() => setView("tree")} className={`flex items-center gap-2 px-5 py-3 rounded-xl font-medium transition-all ${view === "tree" ? "text-white" : "text-gray-400 bg-white/5"}`}
-                style={view === "tree" ? { background: "#D4763C" } : {}}><Network size={18}/> Tree</button>
-              <button onClick={() => setView("list")} className={`flex items-center gap-2 px-5 py-3 rounded-xl font-medium transition-all ${view === "list" ? "text-white" : "text-gray-400 bg-white/5"}`}
-                style={view === "list" ? { background: "#D4763C" } : {}}><LayoutList size={18}/> List</button>
+      <section className="relative overflow-hidden border-b border-white/10 bg-black/50 backdrop-blur-xl">
+        <div className="absolute top-0 right-1/4 w-[500px] h-[200px] bg-[#5BA88C] opacity-10 blur-[150px] rounded-full pointer-events-none" />
+        <div className="max-w-7xl mx-auto px-6 py-12 relative z-10 flex flex-col md:flex-row items-end justify-between gap-6 min-h-[11vh]">
+          <div>
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md text-[10px] font-bold uppercase tracking-widest mb-3 border border-[#5BA88C]/30 bg-[#5BA88C]/10 text-[#5BA88C]">
+              <Terminal size={12} className="animate-pulse" /> NETWORK.TOPOLOGY
+            </div>
+            <h1 className="text-3xl md:text-4xl font-light font-mono text-white mb-1 tracking-tight">OPERATIVE_DIRECTORY</h1>
+            <p className="text-sm text-gray-500 font-mono"><span className="text-white">{allMembers.length}</span> ACTIVE NODES FOUND</p>
+          </div>
+          
+          <div className="flex flex-col sm:flex-row gap-4 w-full md:w-auto">
+            <div className="relative group flex-1 sm:flex-none">
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 group-focus-within:text-[#D4763C] transition-colors" size={16} />
+              <input value={search} onChange={e => setSearch(e.target.value)} placeholder="QUERY.DATABASE..."
+                className="w-full sm:w-[300px] pl-10 pr-4 py-2.5 bg-[#0A0A0A] border border-white/10 rounded-lg text-sm font-mono focus:outline-none focus:border-[#D4763C]/50 focus:shadow-[0_0_15px_rgba(212,118,60,0.2)] transition-all placeholder-gray-600" />
+            </div>
+            <div className="flex bg-[#0A0A0A] border border-white/10 rounded-lg p-1">
+              <button onClick={() => setView("tree")} className={`flex items-center gap-2 px-4 py-1.5 rounded-md text-xs font-mono transition-all ${view === "tree" ? "bg-white/10 text-white" : "text-gray-500 hover:text-gray-300"}`}>
+                [ <Network size={14}/> MAP ]
+              </button>
+              <button onClick={() => setView("list")} className={`flex items-center gap-2 px-4 py-1.5 rounded-md text-xs font-mono transition-all ${view === "list" ? "bg-white/10 text-white" : "text-gray-500 hover:text-gray-300"}`}>
+                [ <LayoutList size={14}/> LOG ]
+              </button>
             </div>
           </div>
         </div>
-      </div>
+      </section>
 
-      <div className="max-w-7xl mx-auto px-6 py-10">
+      <div className="max-w-7xl mx-auto px-6 py-10 relative z-20">
         {view === "tree" && structure && !search ? (
-          <div className="space-y-10">
-            {/* Organizing Heads */}
-            <div className="text-center">
-              <h2 className="text-xl font-bold mb-1" style={{ color: "#1B3A5C" }}>Office of Student Affairs</h2>
-              <div className="w-20 h-1 rounded mx-auto mb-6" style={{ background: "#D4763C" }} />
-              <div className="flex flex-wrap justify-center gap-4 mb-8">
+          <div className="space-y-16">
+            {/* Core Command */}
+            <div className="text-center relative">
+              <div className="inline-flex items-center gap-2 px-4 py-1 rounded bg-[#0A0A0A] border border-[#D4763C]/30 text-xs font-mono text-[#D4763C] mb-8 relative z-10">
+                // SYS.CORE_COMMAND
+              </div>
+              
+              <div className="flex flex-wrap justify-center gap-6 relative z-10">
                 {structure.organizingHeads.map(m => (
-                  <MemberCard key={m._id} member={m} />
+                  <MemberCard key={m._id} member={m} glowColor="#D4763C" />
                 ))}
               </div>
-              <div className="w-px h-10 mx-auto" style={{ background: "#D4763C" }} />
+              {/* Data line down */}
+              <div className="w-px h-16 bg-gradient-to-b from-[#D4763C]/50 to-transparent mx-auto mt-4" />
             </div>
 
-            {/* Committees */}
+            {/* Subsystems */}
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
               {structure.committees.map((c, i) => (
-                <div key={i} className="rounded-2xl overflow-hidden shadow-lg border hover:shadow-xl transition-all" style={{ borderColor: "#D5ECDB" }}>
-                  <div className="p-4" style={{ background: "linear-gradient(135deg, #D5ECDB, #B8D9C1)" }}>
-                    <h3 className="font-bold text-lg" style={{ color: "#1B3A5C" }}>{c.name}</h3>
-                    <p className="text-sm" style={{ color: "#5BA88C" }}>
-                      {c.heads.length + c.volunteers.length + c.clusterHeads.length + c.cohortLeaders.length} members
+                <div key={i} className="bg-[#0A0A0A] border border-white/10 hover:border-[#5BA88C]/40 rounded-xl overflow-hidden transition-all group">
+                  <div className="p-4 border-b border-white/5 relative overflow-hidden">
+                    <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-[#5BA88C]/30 to-transparent" />
+                    <h3 className="font-mono text-sm text-gray-200 group-hover:text-white transition-colors">{c.name}</h3>
+                    <p className="text-[10px] font-mono text-[#5BA88C] mt-1 tracking-widest">
+                      {c.heads.length + c.volunteers.length + c.clusterHeads.length + c.cohortLeaders.length} NODES_ACTIVE
                     </p>
                   </div>
-                  <div className="p-4 space-y-2 bg-white">
+                  <div className="p-4 space-y-2 bg-black/20">
                     {c.heads.map(m => <MiniMember key={m._id} member={m} />)}
                     {c.clusterHeads.map(m => <MiniMember key={m._id} member={m} />)}
+                    
                     {c.volunteers.length > 0 && (
-                      <details className="mt-2">
-                        <summary className="text-sm font-medium cursor-pointer text-gray-500 hover:text-gray-700">
-                          {c.volunteers.length} Volunteers
+                      <details className="mt-2 group/det">
+                        <summary className="text-[10px] font-mono tracking-widest cursor-pointer text-gray-500 hover:text-[#8B9DC3] py-2 border-t border-white/5 uppercase flex items-center gap-2">
+                          <span className="text-[#8B9DC3] opacity-50 group-open/det:rotate-90 transition-transform">▸</span> 
+                          {c.volunteers.length} BASE.UNITS
                         </summary>
-                        <div className="mt-2 space-y-1">
+                        <div className="pt-2 space-y-1 pl-2 border-l border-white/5 ml-1.5">
                           {c.volunteers.map(m => <MiniMember key={m._id} member={m} />)}
                         </div>
                       </details>
                     )}
                     {c.cohortLeaders.length > 0 && (
-                      <details className="mt-2">
-                        <summary className="text-sm font-medium cursor-pointer text-gray-500 hover:text-gray-700">
-                          {c.cohortLeaders.length} Cohort Leaders
+                      <details className="mt-2 group/det">
+                        <summary className="text-[10px] font-mono tracking-widest cursor-pointer text-gray-500 hover:text-[#8B9DC3] py-2 border-t border-white/5 uppercase flex items-center gap-2">
+                          <span className="text-[#8B9DC3] opacity-50 group-open/det:rotate-90 transition-transform">▸</span> 
+                          {c.cohortLeaders.length} COHORT.OPS
                         </summary>
-                        <div className="mt-2 space-y-1">
+                        <div className="pt-2 space-y-1 pl-2 border-l border-white/5 ml-1.5">
                           {c.cohortLeaders.map(m => <MiniMember key={m._id} member={m} />)}
                         </div>
                       </details>
@@ -115,61 +137,75 @@ export default function TeamPage() {
           </div>
         ) : (
           /* List View */
-          <div className="bg-white rounded-2xl shadow-lg overflow-hidden">
-            <div className="overflow-x-auto">
-              <table className="w-full">
+          <div className="bg-[#0A0A0A] border border-white/10 rounded-xl overflow-hidden shadow-2xl">
+            <div className="overflow-x-auto custom-scrollbar">
+              <table className="w-full text-left font-mono">
                 <thead>
-                  <tr style={{ background: "#1B3A5C" }}>
-                    {["Name", "Roll No", "Position", "Committee", "Contact"].map(h => (
-                      <th key={h} className="px-4 py-3 text-left text-xs font-bold text-white uppercase tracking-wider">{h}</th>
+                  <tr className="border-b border-white/10 bg-white/5">
+                    {["ID/Name", "Registration", "Clearance", "Subsystem", "Contact"].map(h => (
+                      <th key={h} className="px-6 py-4 text-[10px] text-gray-500 uppercase tracking-widest">{h}</th>
                     ))}
                   </tr>
                 </thead>
-                <tbody>
-                  {filtered.map((m, i) => (
-                    <tr key={m._id} className="border-b border-gray-100 hover:bg-orange-50/50 transition-colors"
-                      style={{ animationDelay: `${i * 0.02}s` }}>
-                      <td className="px-4 py-3">
-                        <div className="flex items-center gap-3">
-                          <div className="w-8 h-8 rounded-full flex items-center justify-center text-white text-xs font-bold"
-                            style={{ background: catColors[m.category] || "#8B9DC3" }}>
+                <tbody className="divide-y divide-white/5">
+                  {filtered.map((m) => (
+                    <tr key={m._id} className="hover:bg-white/5 transition-colors group cursor-crosshair">
+                      <td className="px-6 py-4">
+                        <div className="flex items-center gap-4">
+                          <div className="w-8 h-8 rounded border flex items-center justify-center text-xs font-bold"
+                            style={{ borderColor: `${catColors[m.category]}30`, color: catColors[m.category], backgroundColor: `${catColors[m.category]}10` }}>
                             {m.name.charAt(0)}
                           </div>
-                          <span className="font-medium text-sm">{m.name}</span>
+                          <span className="text-sm text-gray-300 group-hover:text-white transition-colors">{m.name}</span>
                         </div>
                       </td>
-                      <td className="px-4 py-3 text-sm text-gray-500">{m.rollNo}</td>
-                      <td className="px-4 py-3">
-                        <span className="text-xs font-medium px-2 py-1 rounded-full" style={{ background: `${catColors[m.category]}20`, color: catColors[m.category] }}>
+                      <td className="px-6 py-4 text-xs text-gray-500">{m.rollNo}</td>
+                      <td className="px-6 py-4">
+                        <span className="text-[10px] px-2 py-1 rounded border" style={{ borderColor: `${catColors[m.category]}30`, color: catColors[m.category], backgroundColor: `${catColors[m.category]}10` }}>
                           {catLabels[m.category] || m.category}
                         </span>
                       </td>
-                      <td className="px-4 py-3 text-sm text-gray-600">{m.committee}</td>
-                      <td className="px-4 py-3 text-xs text-gray-400">{m.email}</td>
+                      <td className="px-6 py-4 text-xs text-gray-400">{m.committee}</td>
+                      <td className="px-6 py-4 text-xs text-gray-600 group-hover:text-gray-400 transition-colors">{m.email}</td>
                     </tr>
                   ))}
                 </tbody>
               </table>
             </div>
-            {filtered.length === 0 && <div className="text-center py-12 text-gray-400">No members found</div>}
+            {filtered.length === 0 && (
+              <div className="text-center py-16 text-gray-600 font-mono text-sm flex flex-col items-center gap-2">
+                <Terminal size={24} className="opacity-50 mb-2" />
+                ERR: NO_RECORDS_MATCH_QUERY
+              </div>
+            )}
           </div>
         )}
       </div>
+
+      <style jsx global>{`
+        .custom-scrollbar::-webkit-scrollbar { height: 6px; width: 6px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.2); }
+      `}</style>
     </div>
   );
 }
 
-function MemberCard({ member }: { member: Member }) {
+function MemberCard({ member, glowColor }: { member: Member, glowColor: string }) {
   return (
-    <div className="rounded-xl p-4 shadow-md border bg-white hover:shadow-lg hover:-translate-y-1 transition-all w-48"
-      style={{ borderColor: "#D4763C30" }}>
-      <div className="w-14 h-14 rounded-full mx-auto mb-3 flex items-center justify-center text-white text-xl font-bold"
-        style={{ background: `linear-gradient(135deg, ${catColors[member.category]}, ${catColors[member.category]}CC)` }}>
-        {member.name.charAt(0)}
-      </div>
-      <div className="text-center">
-        <div className="font-bold text-sm" style={{ color: "#1A1A2E" }}>{member.name}</div>
-        <div className="text-xs mt-1 px-2 py-0.5 rounded-full inline-block" style={{ background: "#FFF5ED", color: "#D4763C" }}>
+    <div className="relative group bg-[#0A0A0A] border rounded-xl p-6 w-56 text-center transition-all hover:-translate-y-1 hover:border-[#D4763C]/50"
+      style={{ borderColor: "rgba(255,255,255,0.1)" }}>
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/50 rounded-xl pointer-events-none" />
+      <div className="absolute -inset-0.5 rounded-xl opacity-0 group-hover:opacity-20 blur transition-opacity pointer-events-none" style={{ backgroundColor: glowColor }} />
+      
+      <div className="relative z-10">
+        <div className="w-16 h-16 rounded border mx-auto mb-4 flex items-center justify-center text-xl font-bold font-mono"
+          style={{ borderColor: `${glowColor}50`, color: glowColor, backgroundColor: `${glowColor}10` }}>
+          {member.name.charAt(0)}
+        </div>
+        <div className="font-mono text-sm text-gray-200 group-hover:text-white transition-colors truncate">{member.name}</div>
+        <div className="text-[10px] mt-2 font-mono tracking-widest uppercase" style={{ color: glowColor }}>
           {catLabels[member.category]}
         </div>
       </div>
@@ -179,14 +215,14 @@ function MemberCard({ member }: { member: Member }) {
 
 function MiniMember({ member }: { member: Member }) {
   return (
-    <div className="flex items-center gap-2 p-2 rounded-lg hover:bg-gray-50 transition-all">
-      <div className="w-7 h-7 rounded-full flex items-center justify-center text-white text-xs font-bold flex-shrink-0"
-        style={{ background: catColors[member.category] || "#8B9DC3" }}>
+    <div className="flex items-center gap-3 p-2 rounded hover:bg-white/5 border border-transparent hover:border-white/5 transition-all cursor-crosshair">
+      <div className="w-6 h-6 rounded border flex items-center justify-center text-[10px] font-bold font-mono flex-shrink-0"
+        style={{ borderColor: `${catColors[member.category]}50`, color: catColors[member.category], backgroundColor: `${catColors[member.category]}10` }}>
         {member.name.charAt(0)}
       </div>
       <div className="min-w-0">
-        <div className="text-sm font-medium truncate">{member.name}</div>
-        <div className="text-xs text-gray-400">{catLabels[member.category]}</div>
+        <div className="text-xs font-mono text-gray-300 truncate">{member.name}</div>
+        <div className="text-[9px] font-mono text-gray-600 mt-0.5 tracking-wider uppercase">{catLabels[member.category]}</div>
       </div>
     </div>
   );

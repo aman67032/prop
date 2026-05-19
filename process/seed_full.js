@@ -102,6 +102,7 @@ async function seed() {
 
     const teamMembers = [];
     let currentCluster = '';
+    let seenClusterA = false;
 
     // Start from row 2 (index 1) to skip header
     for (let i = 1; i < data.length; i++) {
@@ -111,6 +112,11 @@ async function seed() {
       // If row has only first col with "Cluster X", track it
       if (typeof row[0] === 'string' && row[0].startsWith('Cluster')) {
         currentCluster = row[0].trim();
+        if (currentCluster === 'Cluster A' && seenClusterA) {
+          currentCluster = 'Cluster B';
+        } else if (currentCluster === 'Cluster A') {
+          seenClusterA = true;
+        }
         continue;
       }
       
