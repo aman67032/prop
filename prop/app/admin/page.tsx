@@ -156,8 +156,30 @@ export default function AdminPage() {
                       className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded text-sm font-mono text-white focus:outline-none focus:border-[#D4763C]/50 transition-all placeholder-gray-600" rows={3} />
                     <input type="date" value={form.date} onChange={e => setForm({ ...form, date: e.target.value })}
                       className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded text-sm font-mono text-white focus:outline-none focus:border-[#D4763C]/50 transition-all text-gray-400" />
-                    <input value={form.committee} onChange={e => setForm({ ...form, committee: e.target.value })} placeholder="ASSIGNED_SUBSYSTEM"
-                      className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded text-sm font-mono text-white focus:outline-none focus:border-[#D4763C]/50 transition-all placeholder-gray-600" />
+                    <select value={form.committee} onChange={e => setForm({ ...form, committee: e.target.value })}
+                      className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded text-sm font-mono text-white focus:outline-none focus:border-[#D4763C]/50 transition-all">
+                      <option value="" disabled>SELECT_SUBSYSTEM</option>
+                      <option value="Organizing Committee">Organizing Committee</option>
+                      <option value="Design Committee">Design Committee</option>
+                      <option value="Tech Team">Tech Team</option>
+                      <option value="Media Team">Media Team</option>
+                      <option value="Discipline Committee">Discipline Committee</option>
+                      <option value="Internal Arrangements Committee">Internal Arrangements Committee</option>
+                      <option value="External Arrangements Committee">External Arrangements Committee</option>
+                      <option value="Photography Team">Photography Team</option>
+                      <option value="Cluster A">Cluster A</option>
+                      <option value="Cluster B">Cluster B</option>
+                      <option value="Cluster C">Cluster C</option>
+                      <option value="Cluster D">Cluster D</option>
+                      <option value="Cluster E">Cluster E</option>
+                      <option value="Cluster F">Cluster F</option>
+                      <option value="Cluster G">Cluster G</option>
+                      <option value="Cluster H">Cluster H</option>
+                      <option value="Cluster I">Cluster I</option>
+                      <option value="Cluster J">Cluster J</option>
+                      <option value="Cluster K">Cluster K</option>
+                      <option value="Cluster L">Cluster L</option>
+                    </select>
                     <select value={form.priority} onChange={e => setForm({ ...form, priority: e.target.value })}
                       className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded text-sm font-mono text-white focus:outline-none focus:border-[#D4763C]/50 transition-all">
                       <option value="low">LOW_PRIORITY</option>
@@ -242,11 +264,53 @@ export default function AdminPage() {
                     <Terminal size={14} /> {editingMember ? "UPDATE_OPERATIVE_RECORD" : "REGISTER_NEW_OPERATIVE"}
                   </h3>
                   <div className="space-y-4">
-                    {(["name", "rollNo", "gender", "position", "committee", "phone", "email"] as const).map(f => (
-                      <input key={f} value={memberForm[f]} onChange={e => setMemberForm({ ...memberForm, [f]: e.target.value })}
-                        placeholder={f.toUpperCase()}
-                        className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded text-sm font-mono text-white focus:outline-none focus:border-[#5BA88C]/50 transition-all placeholder-gray-600" />
-                    ))}
+                    <input value={memberForm.name} onChange={e => setMemberForm({ ...memberForm, name: e.target.value })}
+                      placeholder="NAME" className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded text-sm font-mono text-white focus:outline-none focus:border-[#5BA88C]/50 transition-all placeholder-gray-600" />
+                    <div className="grid grid-cols-2 gap-4">
+                      <input value={memberForm.rollNo} onChange={e => setMemberForm({ ...memberForm, rollNo: e.target.value })}
+                        placeholder="ROLL_NO" className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded text-sm font-mono text-white focus:outline-none focus:border-[#5BA88C]/50 transition-all placeholder-gray-600" />
+                      <select value={memberForm.gender} onChange={e => setMemberForm({ ...memberForm, gender: e.target.value })}
+                        className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded text-sm font-mono text-white focus:outline-none focus:border-[#5BA88C]/50 transition-all">
+                        <option value="" disabled>GENDER</option>
+                        <option value="Male">MALE</option>
+                        <option value="Female">FEMALE</option>
+                        <option value="Other">OTHER</option>
+                      </select>
+                    </div>
+                    <div className="grid grid-cols-2 gap-4">
+                      <input value={memberForm.phone} onChange={e => setMemberForm({ ...memberForm, phone: e.target.value })}
+                        placeholder="PHONE" className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded text-sm font-mono text-white focus:outline-none focus:border-[#5BA88C]/50 transition-all placeholder-gray-600" />
+                      <input value={memberForm.email} onChange={e => setMemberForm({ ...memberForm, email: e.target.value })}
+                        placeholder="EMAIL" className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded text-sm font-mono text-white focus:outline-none focus:border-[#5BA88C]/50 transition-all placeholder-gray-600" />
+                    </div>
+                    <input value={memberForm.position} onChange={e => setMemberForm({ ...memberForm, position: e.target.value })}
+                      placeholder="POSITION (e.g. Designer, Volunteer)" className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded text-sm font-mono text-white focus:outline-none focus:border-[#5BA88C]/50 transition-all placeholder-gray-600" />
+                    
+                    <select value={memberForm.committee} onChange={e => setMemberForm({ ...memberForm, committee: e.target.value })}
+                      className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded text-sm font-mono text-white focus:outline-none focus:border-[#5BA88C]/50 transition-all">
+                      <option value="" disabled>SELECT_COMMITTEE</option>
+                      <option value="Organizing Committee">Organizing Committee</option>
+                      <option value="Design Committee">Design Committee</option>
+                      <option value="Tech Team">Tech Team</option>
+                      <option value="Media Team">Media Team</option>
+                      <option value="Discipline Committee">Discipline Committee</option>
+                      <option value="Internal Arrangements Committee">Internal Arrangements Committee</option>
+                      <option value="External Arrangements Committee">External Arrangements Committee</option>
+                      <option value="Photography Team">Photography Team</option>
+                      <option value="Cluster A">Cluster A</option>
+                      <option value="Cluster B">Cluster B</option>
+                      <option value="Cluster C">Cluster C</option>
+                      <option value="Cluster D">Cluster D</option>
+                      <option value="Cluster E">Cluster E</option>
+                      <option value="Cluster F">Cluster F</option>
+                      <option value="Cluster G">Cluster G</option>
+                      <option value="Cluster H">Cluster H</option>
+                      <option value="Cluster I">Cluster I</option>
+                      <option value="Cluster J">Cluster J</option>
+                      <option value="Cluster K">Cluster K</option>
+                      <option value="Cluster L">Cluster L</option>
+                    </select>
+
                     <select value={memberForm.category} onChange={e => setMemberForm({ ...memberForm, category: e.target.value })}
                       className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded text-sm font-mono text-white focus:outline-none focus:border-[#5BA88C]/50 transition-all">
                       {["organizing_head", "team_leader", "cluster_head", "cohort_leader", "volunteer"].map(c => (
