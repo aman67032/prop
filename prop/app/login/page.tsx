@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useAuth } from "../context/AuthContext";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
+import { Terminal, Lock, KeyRound } from "lucide-react";
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
@@ -19,59 +20,65 @@ export default function LoginPage() {
       await login(email, password);
       router.push("/admin");
     } catch {
-      setError("Invalid credentials. Please try again.");
+      setError("ERR_UNAUTHORIZED: CREDENTIALS_REJECTED");
     } finally { setLoading(false); }
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center px-4" style={{ background: "linear-gradient(135deg, #1B3A5C, #0F2440)" }}>
-      <div className="absolute inset-0 opacity-10">
-        <div className="absolute top-20 left-10 w-72 h-72 rounded-full animate-float" style={{ background: "radial-gradient(circle, #D4763C, transparent)" }} />
-        <div className="absolute bottom-20 right-10 w-96 h-96 rounded-full" style={{ background: "radial-gradient(circle, #5BA88C, transparent)", animation: "float 4s ease-in-out infinite 1s" }} />
-      </div>
+    <div className="min-h-[calc(100vh-64px)] flex flex-col items-center justify-center px-4 bg-[#050505] text-white font-sans selection:bg-[#D4763C]/30"
+         style={{ backgroundImage: "linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px)", backgroundSize: "30px 30px" }}>
+      
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#D4763C] opacity-[0.03] blur-[150px] rounded-full pointer-events-none" />
 
       <div className="w-full max-w-md relative z-10 animate-fade-in-up">
-        <div className="text-center mb-8 flex flex-col items-center">
+        <div className="text-center mb-10 flex flex-col items-center">
           <Image 
             src="/Assests/aarambh_logo_white.png" 
             alt="Aarambh 2026 Logo" 
-            width={180} 
-            height={100} 
-            className="object-contain drop-shadow-lg mb-4"
+            width={160} 
+            height={80} 
+            className="object-contain drop-shadow-[0_0_15px_rgba(212,118,60,0.5)] mb-4"
           />
-          <p className="text-gray-400 mt-1">Command Center Login</p>
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded bg-[#0A0A0A] border border-white/10 text-[10px] font-mono tracking-widest uppercase text-gray-500">
+            <Terminal size={12} className="text-[#D4763C]" /> SYSTEM_AUTHENTICATION
+          </div>
         </div>
 
-        <form onSubmit={handleSubmit} className="rounded-2xl p-8 shadow-2xl border"
-          style={{ background: "rgba(255,255,255,0.05)", borderColor: "rgba(255,255,255,0.1)", backdropFilter: "blur(20px)" }}>
+        <form onSubmit={handleSubmit} className="bg-[#0A0A0A] rounded-xl p-8 border border-white/10 relative overflow-hidden group">
+          <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-[#D4763C]/50 to-transparent" />
+          
           {error && (
-            <div className="mb-4 p-3 rounded-xl text-sm font-medium" style={{ background: "#FEE2E2", color: "#DC2626" }}>
+            <div className="mb-6 p-3 rounded bg-[#EF4444]/10 border border-[#EF4444]/30 text-xs font-mono text-[#EF4444] uppercase tracking-widest text-center animate-pulse">
               {error}
             </div>
           )}
 
-          <div className="mb-5">
-            <label className="block text-sm font-medium text-gray-300 mb-2">Email</label>
-            <input type="email" value={email} onChange={e => setEmail(e.target.value)} required
-              className="w-full px-4 py-3 rounded-xl bg-white/10 text-white placeholder-gray-500 border border-white/20 focus:outline-none focus:border-orange-400 transition-all"
-              placeholder="your@jklu.edu.in" />
-          </div>
           <div className="mb-6">
-            <label className="block text-sm font-medium text-gray-300 mb-2">Password</label>
+            <label className="block text-[10px] font-mono tracking-widest uppercase text-gray-500 mb-2 flex items-center gap-2">
+              <Lock size={12} className="text-[#5BA88C]" /> OPERATIVE_ID
+            </label>
+            <input type="email" value={email} onChange={e => setEmail(e.target.value)} required
+              className="w-full px-4 py-3 bg-white/5 text-white font-mono text-sm border border-white/10 rounded focus:outline-none focus:border-[#D4763C]/50 focus:bg-white/10 transition-all placeholder-gray-700"
+              placeholder="UID@jklu.edu.in" />
+          </div>
+          <div className="mb-8">
+            <label className="block text-[10px] font-mono tracking-widest uppercase text-gray-500 mb-2 flex items-center gap-2">
+              <KeyRound size={12} className="text-[#5BA88C]" /> ENCRYPTION_KEY
+            </label>
             <input type="password" value={password} onChange={e => setPassword(e.target.value)} required
-              className="w-full px-4 py-3 rounded-xl bg-white/10 text-white placeholder-gray-500 border border-white/20 focus:outline-none focus:border-orange-400 transition-all"
+              className="w-full px-4 py-3 bg-white/5 text-white font-mono text-sm border border-white/10 rounded focus:outline-none focus:border-[#D4763C]/50 focus:bg-white/10 transition-all placeholder-gray-700 tracking-[0.2em]"
               placeholder="••••••••" />
           </div>
 
           <button type="submit" disabled={loading}
-            className="w-full py-3 rounded-xl font-bold text-white transition-all hover:scale-[1.02] hover:shadow-xl disabled:opacity-50"
-            style={{ background: "linear-gradient(135deg, #D4763C, #B85E2A)" }}>
-            {loading ? "Signing in..." : "Sign In →"}
+            className="w-full py-3 rounded text-xs font-mono font-bold text-black uppercase tracking-widest transition-all disabled:opacity-50 hover:bg-[#b85e2a]"
+            style={{ background: "#D4763C", boxShadow: "0 0 20px rgba(212,118,60,0.2)" }}>
+            {loading ? "AUTHENTICATING..." : "INITIATE_HANDSHAKE"}
           </button>
         </form>
 
-        <p className="text-center text-gray-500 text-sm mt-6">
-          Public viewers don&apos;t need to login — <a href="/" className="underline" style={{ color: "#D4763C" }}>browse freely</a>
+        <p className="text-center text-[10px] font-mono tracking-widest uppercase text-gray-600 mt-8">
+          PUBLIC.ACCESS_LEVEL &gt; <a href="/" className="text-[#5BA88C] hover:text-white transition-colors">GUEST_MODE</a>
         </p>
       </div>
     </div>

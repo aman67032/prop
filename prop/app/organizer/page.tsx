@@ -18,8 +18,8 @@ export default function OrganizerPage() {
   }, [user, loading, router]);
 
   return (
-    <div className="min-h-screen flex items-center justify-center" style={{ background: "var(--cream)" }}>
-      <div className="w-16 h-16 rounded-full border-4 border-t-transparent animate-spin" style={{ borderColor: "#D4763C", borderTopColor: "transparent" }} />
+    <div className="min-h-screen flex items-center justify-center bg-[#050505]">
+      <div className="w-16 h-16 rounded-full border-2 border-white/10 border-t-[#D4763C] animate-spin" />
     </div>
   );
 }
