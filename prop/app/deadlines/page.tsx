@@ -12,6 +12,8 @@ const priorityColors: Record<string, { bg: string; text: string; border: string 
   low: { bg: "#8B9DC310", text: "#8B9DC3", border: "#8B9DC330" }
 };
 
+import Loader from "../components/Loader";
+
 export default function DeadlinesPage() {
   const [deadlines, setDeadlines] = useState<Deadline[]>([]);
   const [filter, setFilter] = useState("all");
@@ -40,7 +42,7 @@ export default function DeadlinesPage() {
 
   if (loading) return (
     <div className="min-h-screen flex items-center justify-center bg-[#050505]">
-      <div className="w-16 h-16 rounded-full border-2 border-white/10 border-t-[#D4763C] animate-spin" />
+      <Loader />
     </div>
   );
 

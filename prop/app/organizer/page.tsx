@@ -2,6 +2,7 @@
 import { useEffect } from "react";
 import { useAuth } from "../context/AuthContext";
 import { useRouter } from "next/navigation";
+import Loader from "../components/Loader";
 
 export default function OrganizerPage() {
   const { user, loading } = useAuth();
@@ -19,7 +20,7 @@ export default function OrganizerPage() {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-[#050505]">
-      <div className="w-16 h-16 rounded-full border-2 border-white/10 border-t-[#D4763C] animate-spin" />
+      <Loader />
     </div>
   );
 }

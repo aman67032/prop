@@ -5,6 +5,8 @@ import Link from "next/link";
 import Image from "next/image";
 import { Flame, Users, ClipboardList, CheckCircle2, Clock, AlertCircle, TrendingUp, Calendar, ArrowRight, Activity, Terminal, Network } from "lucide-react";
 
+import Loader from "./components/Loader";
+
 interface DeadlineStats { total: number; completed: number; pending: number; overdue: number; byCommittee: { _id: string; total: number; completed: number }[]; upcoming: { _id: string; title: string; date: string; committee: string; priority: string }[]; }
 interface TeamStats { total: number; byCategory: { _id: string; count: number }[]; byCommittee: { _id: string; count: number }[]; }
 
@@ -21,7 +23,7 @@ export default function Dashboard() {
 
   if (loading) return (
     <div className="min-h-screen flex items-center justify-center bg-[#050505]">
-      <div className="w-16 h-16 rounded-full border-2 border-white/10 border-t-[#D4763C] animate-spin" />
+      <Loader />
     </div>
   );
 

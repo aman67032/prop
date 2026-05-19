@@ -16,6 +16,8 @@ const catLabels: Record<string, string> = {
   cluster_head: "CLUSTER.OP", cohort_leader: "COHORT.OP", volunteer: "BASE.UNIT"
 };
 
+import Loader from "../components/Loader";
+
 export default function TeamPage() {
   const [structure, setStructure] = useState<Structure | null>(null);
   const [search, setSearch] = useState("");
@@ -37,7 +39,7 @@ export default function TeamPage() {
 
   if (loading) return (
     <div className="min-h-screen flex items-center justify-center bg-[#050505]">
-      <div className="w-16 h-16 rounded-full border-2 border-white/10 border-t-[#D4763C] animate-spin" />
+      <Loader />
     </div>
   );
 

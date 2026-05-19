@@ -5,6 +5,8 @@ import { useRouter } from "next/navigation";
 import api from "../lib/api";
 import { Zap, ShieldCheck, ClipboardList, Users, Plus, CheckCircle2, RotateCcw, Edit2, Trash2, Terminal, Network } from "lucide-react";
 
+import Loader from "../components/Loader";
+
 interface Member { _id: string; name: string; rollNo: string; gender: string; position: string; committee: string; phone: string; email: string; category: string; }
 interface Deadline { _id: string; title: string; description: string; date: string; committee: string; status: string; priority: string; }
 
@@ -91,7 +93,7 @@ export default function AdminPage() {
 
   if (authLoading || loading) return (
     <div className="min-h-screen flex items-center justify-center bg-[#050505]">
-      <div className="w-16 h-16 rounded-full border-2 border-white/10 border-t-[#5BA88C] animate-spin" />
+      <Loader />
     </div>
   );
 
