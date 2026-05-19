@@ -144,9 +144,11 @@ export default function TeamPage() {
               <table className="w-full text-left font-mono">
                 <thead>
                   <tr className="border-b border-white/10 bg-white/5">
-                    {["ID/Name", "Registration", "Clearance", "Subsystem", "Contact"].map(h => (
-                      <th key={h} className="px-6 py-4 text-[10px] text-gray-500 uppercase tracking-widest">{h}</th>
-                    ))}
+                    <th className="px-6 py-4 text-[10px] text-gray-500 uppercase tracking-widest">ID/Name</th>
+                    <th className="px-6 py-4 text-[10px] text-gray-500 uppercase tracking-widest hidden sm:table-cell">Registration</th>
+                    <th className="px-6 py-4 text-[10px] text-gray-500 uppercase tracking-widest">Clearance</th>
+                    <th className="px-6 py-4 text-[10px] text-gray-500 uppercase tracking-widest hidden md:table-cell">Subsystem</th>
+                    <th className="px-6 py-4 text-[10px] text-gray-500 uppercase tracking-widest hidden lg:table-cell">Contact</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-white/5">
@@ -158,17 +160,20 @@ export default function TeamPage() {
                             style={{ borderColor: `${catColors[m.category]}30`, color: catColors[m.category], backgroundColor: `${catColors[m.category]}10` }}>
                             {m.name.charAt(0)}
                           </div>
-                          <span className="text-sm text-gray-300 group-hover:text-white transition-colors">{m.name}</span>
+                          <div>
+                            <span className="text-sm text-gray-300 group-hover:text-white transition-colors">{m.name}</span>
+                            <span className="block sm:hidden text-[10px] text-gray-600 mt-0.5">{m.rollNo}</span>
+                          </div>
                         </div>
                       </td>
-                      <td className="px-6 py-4 text-xs text-gray-500">{m.rollNo}</td>
+                      <td className="px-6 py-4 text-xs text-gray-500 hidden sm:table-cell">{m.rollNo}</td>
                       <td className="px-6 py-4">
                         <span className="text-[10px] px-2 py-1 rounded border" style={{ borderColor: `${catColors[m.category]}30`, color: catColors[m.category], backgroundColor: `${catColors[m.category]}10` }}>
                           {catLabels[m.category] || m.category}
                         </span>
                       </td>
-                      <td className="px-6 py-4 text-xs text-gray-400">{m.committee}</td>
-                      <td className="px-6 py-4 text-xs text-gray-600 group-hover:text-gray-400 transition-colors">{m.email}</td>
+                      <td className="px-6 py-4 text-xs text-gray-400 hidden md:table-cell">{m.committee}</td>
+                      <td className="px-6 py-4 text-xs text-gray-600 group-hover:text-gray-400 transition-colors hidden lg:table-cell">{m.email}</td>
                     </tr>
                   ))}
                 </tbody>

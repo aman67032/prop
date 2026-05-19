@@ -338,17 +338,25 @@ export default function AdminPage() {
                 <table className="w-full text-left font-mono">
                   <thead>
                     <tr className="border-b border-white/10 bg-white/5">
-                      {["OP_NAME", "REG_ID", "SUBSYSTEM", "CLEARANCE", "SYS_CMDS"].map(h => (
-                        <th key={h} className="px-6 py-4 text-[10px] text-gray-500 uppercase tracking-widest">{h}</th>
-                      ))}
+                      <th className="px-6 py-4 text-[10px] text-gray-500 uppercase tracking-widest">OP_NAME</th>
+                      <th className="px-6 py-4 text-[10px] text-gray-500 uppercase tracking-widest hidden sm:table-cell">REG_ID</th>
+                      <th className="px-6 py-4 text-[10px] text-gray-500 uppercase tracking-widest hidden md:table-cell">SUBSYSTEM</th>
+                      <th className="px-6 py-4 text-[10px] text-gray-500 uppercase tracking-widest">CLEARANCE</th>
+                      <th className="px-6 py-4 text-[10px] text-gray-500 uppercase tracking-widest">SYS_CMDS</th>
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-white/5">
                     {members.map(m => (
                       <tr key={m._id} className="hover:bg-white/5 transition-colors group">
-                        <td className="px-6 py-3 text-sm text-gray-300 group-hover:text-white transition-colors">{m.name}</td>
-                        <td className="px-6 py-3 text-xs text-gray-500">{m.rollNo}</td>
-                        <td className="px-6 py-3 text-xs text-gray-400">{m.committee}</td>
+                        <td className="px-6 py-3 text-sm text-gray-300 group-hover:text-white transition-colors">
+                          <div>
+                            <span>{m.name}</span>
+                            <span className="block sm:hidden text-[9px] text-gray-500 mt-0.5">{m.rollNo}</span>
+                            <span className="block md:hidden text-[9px] text-[#5BA88C]/75 mt-0.5">{m.committee}</span>
+                          </div>
+                        </td>
+                        <td className="px-6 py-3 text-xs text-gray-500 hidden sm:table-cell">{m.rollNo}</td>
+                        <td className="px-6 py-3 text-xs text-gray-400 hidden md:table-cell">{m.committee}</td>
                         <td className="px-6 py-3">
                           <span className="text-[9px] px-2 py-1 rounded border border-[#5BA88C]/30 bg-[#5BA88C]/10 text-[#5BA88C] uppercase tracking-widest">
                             {m.category.replace("_", ".")}
