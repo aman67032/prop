@@ -18,12 +18,6 @@ app.use(cors({
 }));
 app.use(express.json());
 
-app.use('/api/auth', authRoutes);
-app.use('/api/team', teamRoutes);
-app.use('/api/deadlines', deadlineRoutes);
-
-app.get('/api/health', (req, res) => res.json({ status: 'ok' }));
-
 let isConnected = false;
 const connectDB = async () => {
   if (isConnected) return;
@@ -48,6 +42,12 @@ app.use(async (req, res, next) => {
     res.status(500).json({ error: 'Database connection failed: ' + err.message });
   }
 });
+
+app.use('/api/auth', authRoutes);
+app.use('/api/team', teamRoutes);
+app.use('/api/deadlines', deadlineRoutes);
+
+app.get('/api/health', (req, res) => res.json({ status: 'ok' }));
 
 const PORT = process.env.PORT || 5000;
 if (process.env.NODE_ENV !== 'production') {
