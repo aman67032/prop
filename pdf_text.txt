@@ -1,0 +1,695 @@
+--- PAGE 0 ---
+ 
+ 
+ 
+AARAMBH'26  
+Deadlines, Tasks & Coordination - All Teams  
+ 
+JK Lakshmipat University  ·  Orientation Program  ·  May – July 2026  
+Compiled from all team documents and presentations, May 2026  
+ 
+Teams in this document  
+ Design Committee  
+ Tech Team  
+ Media Team  
+ Social Media Team  
+ Photography Team  
+ Discipline Team  
+ Internal Arrangements  
+ Hospitality Team  
+ Food & Accommodation  
+ Events & Venue Team  
+ Feedback & Registration Team  
+ 
+What this document covers  
+1. Master chronological timeline - every deadline sorted by date  
+2. Team -wise task breakdown - what each team owns and when  
+3. Critical blockers - what is stuck and who needs to move  
+4. ASAP items - things with no date that are blocking right now  
+5. Quick reference card - one line per date for daily check  
+  
+--- PAGE 1 ---
+ 
+01 / MASTER TIMELINE  
+All Deadlines, One Place  
+Every task from every team, sorted by date. Dates in bold with a shaded row are hard deadlines - they either hit 
+or they cascade into something else breaking. Recurring tasks happen every event day.  
+HARD means no extensions. If it slips, something downstream stops.  
+ 
+Date Task / Deliverable  Team  Status  ! 
+20 May  Theme, colour palette & logo 
+LOCKED - brand guide shared  Design  Pending  🔴 
+20 May  Brand guide distributed to all 
+teams  Design  Pending  🔴 
+20 May  JKLU logo (PNG+SVG), hex codes, 
+fonts to Tech  Design → Tech  Pending  🔴 
+25 May  Hero banner/mascot artwork to 
+Tech  Design → Tech  Pending  🔴 
+25 May  OH Meeting: standees, banners, 
+backdrop, t -shirts, wristbands 
+decided  Design + OHs  Pending  🔴 
+25 May  Last year photo archive (300 –500 
+selects, edited, sorted)  Photography  Pending   
+25 May  Content calendar drafted & approved 
+by OHs  Social Media  Pending   
+28 May  Website draft ready - shared with 
+team leads for review  Tech  Pending  🔴 
+28 May  Website content (About, Events, 
+Team, FAQ copy) to Tech  Media  Pending  🔴 
+28 May  Face Recognition Photo Finder - 
+architecture discussion done  Tech  Pending   
+1 June  Event schedule (day+session -wise) 
+to Tech  Media/OHs → Tech  Pending  🔴 
+1 June  Student rules & guidelines to Tech  Media/OHs → Tech  Pending   
+1 June  FAQs, campus map, contacts to Tech  Media/OHs → Tech  Pending   
+1 June  Events & Venue virtual kickoff 
+meeting  Events & Venue  Pending   
+5 June  Website deployed to Firebase 
+Hosting  Tech Pending  ● 
+5 June  Event descriptions, speaker bios, 
+FAQ copy, announcement copy 
+ready  Media  Pending  ● 
+--- PAGE 2 ---
+ 
+Date Task / Deliverable  Team  Status  ! 
+9 June  All posters final - print-ready and web 
+files delivered  Design  Pending   
+10 June  Website live. Check -in system live. 
+Registrations open.  Tech Pending  ● 
+10 June  Volunteer Management Portal live  Tech Pending  ● 
+10 June  Aarambh brochure final  Design  Pending   
+10 June  Registration opening post on 
+Instagram + WhatsApp. Bio and 
+highlights updated.  Social Media  Pending  ● 
+15 June  Feedback & Analytics Portal live  Tech Pending   
+15 June  Power and connectivity requirements 
+list submitted to OHs  Internal Arrangements  Pending   
+15 June  Camera and gear list submitted to 
+OHs Photography  Pending   
+18 June  First drafts: ID cards, certs, t -shirts, 
+wristbands - all 5 variants  Design  Pending   
+19 June  Standees, banners, stage backdrop - 
+all designs final  Design  Pending   
+20 June  Tech equipment list submitted to OHs  Tech Pending   
+20 June  Hospitality operational walkthrough 
+meeting  Hospitality  Pending   
+23 June  ID cards, certs, t -shirts - revision 
+deadline, all changes in  Design  Pending   
+26 June  ID Cards, Certs, Apparel - 
+absolutely final. No more changes 
+after this.  Design  Pending  ● 
+28 June  10–15 Instagram posts published 
+cumulative by this date  Social Media  Pending   
+1 July  Discipline protocols and rules doc 
+submitted to OHs  Discipline  Pending   
+1 July  Photo Finder testing starts  Tech Pending   
+5 July  Venue layout map shared with all 
+teams  Internal Arrangements  Pending  ● 
+5 July  All media pre -event prep done (past 
+editions data, research)  Media  Pending   
+5 July  Photo Finder fully live  Tech Pending   
+--- PAGE 3 ---
+ 
+Date Task / Deliverable  Team  Status  ! 
+5 July  Hospitality final pre -event briefing 
+meeting  Hospitality  Pending   
+10 July  Duty sheets ready. Volunteer check -in 
+training and device test done.  All Teams  Pending   
+11 July  Day 0 - full team assembly, venue 
+setup, systems check  All Teams  Pending  ● 
+11 July  Full venue walkthrough with all OH 
+sign-offs Internal Arrangements  Pending  ● 
+11 July  Discipline briefing + check -in test 
+run Discipline  Pending  ● 
+12 July  Hospitality team fully on ground  Hospitality  Pending  ● 
+13–21 July  Main event execution - all teams on 
+ground every day  All Teams  Pending  ● 
+Daily  Daily incident report to core team 
+(Discipline). Daily event reports 
+(Media). Priority photo selects to 
+Social Media (Photography).  Discipline / Media / 
+Photo  Recurring   
+21–24 July  Closure: venue breakdown, 
+equipment return, admin handover, 
+team appreciation  IA + All Teams  Pending   
+Post-event  Final Aarambh report submitted 
+(Media). Venue handover within 24 
+hrs (IA).  Media + IA  Pending   
++3–5 days  Post-event recap reel published  Social Media  Pending   
++7 days  Aftermovie live, approved by OHs first 
+(Media). All photos to shared drive 
+(Photography).  Media + Photography  Pending   
+     
+     
+     
+  
+--- PAGE 4 ---
+ 
+02 / TEAM -WISE TASKS  
+What Each Team Owns  
+Broken down by team. Every row is a real task with a real deadline. Notes column has the context you actually 
+need - not just what, but why it matters and what to watch for.  
+ 
+- Design Committee  
+Everything downstream - posters, standees, apparel, Tech's web assets - depends on T1 being done by 20 May. That 
+date is not negotiable.  
+# Task Deadline  Notes  
+T1 Theme, colour palette, mood 
+board, logo and brand guide - 
+shared with every single team  20 May - NO 
+EXTENSION  No poster work begins before this. 
+Export a one -pager and send it to all 
+teams. Fonts included.  
+T2 OH meeting: standee numbers, 
+banner placements, backdrop 
+size, t -shirt and wristband 
+approval all decided  25 May - must 
+happen  T3 and T4 cannot start without this 
+meeting. Design team and all OHs 
+attend.  
+T3 Social media posters (Instagram 
+square + portrait, WhatsApp) 
+and print posters - first draft  3 June  Follow theme from T1. Separate files for 
+print and digital.  
+T3 All posters final - print-ready and 
+web files  9 June  Correct DPI. Both versions.  
+T3 Standees, banners, stage 
+backdrop, photo booth frame - 
+all final  19 June  Factor 3 –5 days printing time. Print -
+ready DPI only.  
+T5 Aarambh 2026 Brochure - the 
+official programme magazine  10 June  Welcome note, theme reveal, events, 
+team profiles, reg info, schedule, last 
+year stats, venue map, social handles.  
+T4 ID cards first drafts - 5 variants: 
+Volunteer, Student, OH, Team 
+Leader, OOSA  18 June  B6 size. Each variant looks distinct.  
+T4 Certificates first drafts - OH (with 
+photo), Coordinator and 
+Volunteer (standard)  18 June  OH certs have individual photos. All 
+certs need faculty/head signatures.  
+T4 T-shirts and wristbands first 
+drafts (if approved in 25 May OH 
+meeting)  18 June  Quantities per category decided in OH 
+meeting.  
+T4 ID cards, certs, t -shirts - revision 
+deadline  23 June  All feedback incorporated before this.  
+T4 Every ID card, certificate and 
+apparel item - absolutely final  26 June - NO 
+SLIP Factor printing lead time after this date.  
+--- PAGE 5 ---
+ 
+# Task Deadline  Notes  
+T6 Web assets to Tech (.png, .ttf, all 
+sizes)  Before 28 May  Name files clearly e.g. 
+poster_main_v2.png. Hand over task by 
+task, not all at the end.  
+T6 Platform -sized creatives to 
+Social Media team  Rolling - per 
+content calendar  One shared drive. Consistent naming. 
+Handover per calendar date.  
+ 
+- Tech Team  
+GitHub repo: aarambh@jklu.edu.in. Cashfree payment keys come from Aman Pratap - without them, the registration 
+module cannot be built or tested.  
+# Task Deadline  Notes  
+T1 Website fully live - landing, 
+schedule, events, FAQ, speaker 
+profiles, registration  10 June  Draft: 28 May. Deployed: 5 June. Live 
+with SEO, mobile -responsive, 
+countdown timer: 10 June.  
+T1 Registration with Cashfree 
+payment (keys from Aman 
+Pratap)  Live by 10 June  Test in sandbox first. Handle success, 
+failure, timeout and double -payment 
+cases.  
+T2 Feedback and Analytics Portal - 
+QR per event, 
+anonymous/named toggle, 
+dashboard  15 June  OH role -based access. PDF/Excel 
+export. Feedback closes 48 hrs after 
+each event.  
+T3 Face Recognition Photo Finder - 
+architecture locked  28 May  Auto face indexing from Photography's 
+OneDrive uploads. Privacy consent 
+mandatory.  
+T3 Photo Finder testing  1 July  Photography team uploads per event. 
+JKLU students only. Report button 
+included.  
+T3 Photo Finder fully live  5 July  Invite -only beta to start.  
+T4 Equipment list - all hardware, 
+cables, devices, rent vs buy  20 June  Include campus equipment available to 
+issue.  
+T5 Digital Check -in System - QR 
+per student, live dashboard, 
+offline fallback  10 June  Multi -gate simultaneous. Synced with 
+Discipline team. Offline printed backup 
+list ready.  
+T6 Volunteer Management Portal - 
+duty assignment, shift tracking, 
+notifications  10 June  Role-based access: Admin/OH vs 
+Volunteer. Downloadable duty sheet. 
+Synced with check -in. 
+ 
+ 
+ 
+--- PAGE 6 ---
+ 
+ 
+- Media Team  
+Team leads: Adityavardhan (Reports) and Chestha (Anchoring). Anchors: Chestha, Shivia, Yuvraj, Darshita, Gouranshi. 
+Writers: Komal, Aryan, Shouryaveer, Harshita, Dhruv.  
+# Task Deadline  Notes  
+T1 Website content - About, Events, 
+Team, FAQ copy - handed to 
+Tech  28 May  OHs approve before submission. No 
+content means no website.  
+T2 Event descriptions, 
+speaker/guest bios, FAQ, 
+announcement copy  5 June  Every event needs its own copy. Guest 
+bios need photo approval before going 
+in. 
+T4 Social media assets - rolling 
+handover per content calendar  Rolling  Platform -sized files. Quick turnaround 
+especially during event days.  
+T1 All pre -event prep complete - 
+historical data, research, past 
+editions  5 July  Must be done before Aarambh starts.  
+T1 Anchoring and announcements 
+for all Aarambh events  Event days  All anchor slots covered. No event 
+without an anchor.  
+T1 Daily event reports submitted at 
+end of each day  Each event day  Full coverage of the day.  
+T1 Aarambh newspaper - feedback, 
+QR codes, interviews, stats, 
+highlights, games  During and post 
+event  Design team handles layout. Submitted 
+compiled the next day.  
+T5 Final Aarambh compiled report  Day after event 
+ends Covers the entire event.  
+T5 Aftermovie - 3–5 min, colour 
+graded, copyright -free music  Within 7 days 
+post-event  OHs approve before posting. 
+Permanently archived on college page.  
+    
+ 
+- Social Media Team  
+Leads: Vaibhav and Aditya. 6 volunteers, each making 4 videos. Videos made in pairs. Every script goes through DOCX 
+approval before shooting starts.  
+# Task Deadline  Notes  
+T1 Content calendar - all posts 
+mapped, dates confirmed, OHs 
+approved  Before first post  No unplanned posting. Design team 
+needs dates in advance.  
+T2 Registration opening post with 
+link, deadline, excitement  10 June - non-
+negotiable  The most important post before the 
+event. Bio and highlights updated same 
+day. 
+--- PAGE 7 ---
+ 
+# Task Deadline  Notes  
+T3 Instagram bio and highlights 
+updated - reg link in bio  Before 10 June  Clean profile. Current.  
+T4 10–15 posts published - theme 
+reveal, reg open, event reveals, 
+BTS, countdowns  By 28 June  Minimum 1 reel on Day 1 of the event. 
+At least 1 post every 2 –3 days.  
+T5 5 posts for the Aarambh 
+opening. Day 1 reel mandatory.  Event start (13 
+July) Stories daily during event days. Tag 
+participants.  
+T6 WhatsApp broadcast - reg 
+reminders, updates, 
+announcements  Rolling  Copy approved by OHs. Coordinate 
+with Tech notification list.  
+T7 Post-event recap reel  Within 3 –5 days 
+post-event  High production. Wide reach.  
+T8 All stories saved to highlights - 
+Events, Team, BTS, Recap 
+categories  During and post 
+event  Done as you go, not all at the end.  
+    
+ 
+- Photography Team  
+Social Media gets photo selects first, same day or next day. Tech gets photos for the website after. OneDrive uploads are 
+what power the Photo Finder feature.  
+# Task Deadline  Notes  
+T1 Last year photo archive - 300–
+500 edited selects, sorted by 
+event  25 May  Exposure, crop, colour corrected. No 
+raw files. Candids included.  
+T2 Camera and gear list - DSLR vs 
+mirrorless, lens list, college vs 
+rent gap  15 June  Reasoning per item. Sensor size and 
+ISO range noted. Submitted to OHs.  
+T3 Shot list and coverage plan - 
+photographer per event, 
+mandatory shots, backups  Before Day 1 (11 
+July) No event slot uncovered. Reviewed with 
+core team at least once.  
+T4 Priority selects to Social Media 
+team - same day or next 
+morning  After each event  Social Media gets first pick. Agreed 
+turnaround time per event.  
+T4 Full edited gallery to core team 
+and shared drive - one folder per 
+event  After each event  Consistent folder naming. Single source 
+of truth.  
+T4 All photos to Tech for website  After each event  Student and team photos both.  
+T4 All event photos uploaded to 
+OneDrive for Photo Finder  After each event  These are what Tech's face recognition 
+indexes. Upload as you go.  
+ 
+--- PAGE 8 ---
+ 
+- Discipline Team  
+Protocols doc has 3 separate sections: one for volunteers, one for team leaders, one for new students. All three are 
+needed by 1 July.  
+# Task Deadline  Notes  
+T2 Crowd control protocols and 
+rules document - submitted to 
+OHs 1 July  Covers evacuation routes, escalation 
+chain, zone capacity limits, barricade 
+placement.  
+T4 Coordinate with Tech on Check -
+in System; all gate volunteers 
+trained on QR scanning  Before 10 July  Weekly sync with Tech. One device per 
+gate confirmed. Offline printed backup 
+list ready.  
+T1 Zone -wise, shift -wise duty 
+sheets for all volunteers - 
+shared via Volunteer Portal  Before 11 July  No zone left uncovered. Backup 
+assigned per zone. Walkie -talkies for 
+zone leads.  
+T2 Barricade placement 
+coordinated with equipment 
+team  Before Day 0  Stage front, queue areas. Max capacity 
+defined per zone.  
+T1+T4  Full volunteer briefing + check -in 
+test run on Day 0  Day 0 - 11 July  Evacuation routes practiced. Protocol -
+driven response. Coordinated with 
+college security.  
+T3 Real-time incident logging 
+during every event - standard 
+format  During events  Zone leads log immediately. OH 
+notified for every incident. First aid kit 
+per zone.  
+T3 Daily incident report submitted 
+to core team at end of each day  Each event day  Evening debrief after every day.  
+ 
+- Internal Arrangements  
+Team A (7 volunteers) handles logistics setup and navigation. Team B (7 volunteers) handles inventory data. Together 
+they are the backbone of every on -ground setup.  
+# Task Deadline  Notes  
+T3 Power and connectivity 
+requirements list - extension 
+cords, strips, WiFi, generator  15 June  Mapped to venue layout. No wire 
+crossings in crowd areas.  
+Prep Material procurement + goodies 
+for new students prepared  Before 11 July  Trekking attendance sheets ready. 
+Inventory managed by Team B.  
+T1 Full venue layout map - zones, 
+power points, standee/banner 
+positions - shared with every 
+team  5 July - HARD  Every other team needs this to plan. 
+College admin approval if needed. 
+Contingency zones marked.  
+T2 Stage configuration, seating 
+plan, podium, mic placements - 
+finalized and set up  Before Day 0  VIP seating approved by core team. 
+Backdrop installed by Design team. 
+Sound check happens after.  
+--- PAGE 9 ---
+ 
+# Task Deadline  Notes  
+T3 Power and WiFi setup complete, 
+generator tested, electrician on 
+standby confirmed  Before Day 0  Backup power for check -in desks is the 
+most critical part of this.  
+T4 Full venue walkthrough with all 
+OH sign -offs - safety check of 
+every zone  Day 0 - 11 July  Exits clear, first aid kits placed, fire 
+extinguishers accessible. Sign -off to 
+core.  
+T5 Breakdown and cleanup, rented 
+gear returned, formal venue 
+handover to admin  Within 24 hrs 
+post-event  Leave no trace policy. Final cleanup 
+report to core.  
+ 
+- Hospitality Team  
+Leads: Jheel Jain and Gourang Tak. 8 volunteers. Duty charts go out 48 hrs before each milestone via WhatsApp and 
+email. All volunteers report 45 min before event start.  
+Task / Meeting  Date Notes  
+Duty charts created and circulated 
+(done 48 hrs before each milestone)  Rolling  Jheel and Gourang prepare. Sent via 
+WhatsApp and email.  
+Progress check -in - duty charts, 
+volunteer readiness, guest list updates  1 June  Online, Google Meet.  
+Operational walkthrough - event day 
+flow, help desk setup, guest 
+assignments finalized  20 June  Online or hybrid.  
+Final pre -event briefing - full readiness 
+check, emergency protocols, Q&A  5 July  Online, Google Meet.  
+EVENT DAY - full team on ground  12 July  Report 45 min early. Every post 
+covered.  
+   
+ 
+- Food & Accommodation Team  
+Leads: Smile Chhabra (Girls Hostel), Arjun Singh Tanwar (Boys Hostel), Kartavya Garhwal (Mess). One floating 
+emergency volunteer (V10) bridges all three sub -teams.  
+Responsibility  Owner  How It Works  
+Girls hostel check -in, room allotment, 
+room issues, parent interactions  Smile Chhabra + V1 –
+V3 V1: entry and register check; V2: 
+luggage movement; V3: parent 
+guidance  
+Boys hostel check -in, room allotment, 
+bed allocation, maintenance 
+complaints  Arjun Singh Tanwar + 
+V4–V6 V4: entry; V5: luggage; V6: parent 
+guidance  
+--- PAGE 10 ---
+ 
+Responsibility  Owner  How It Works  
+Mess and food - meal scheduling, 
+batch entry, queue control, water, 
+vendor coordination  Kartavya Garhwal + 
+V7–V9 V7: food distribution; V8: water refills; 
+V9: queue and table monitoring  
+Floating emergency - surge support 
+wherever it is needed most  V10 Real-time. Can be anywhere. Bridges 
+all sub -teams.  
+Complaint escalation  All Cores + V10  Volunteer tells Core; Core escalates 
+to OH if unresolved; OH to Student 
+Affairs if needed.  
+ 
+- Events & Venue Team  
+15 members total. 12 active across venues (min 3 per active venue), 3 on standby rotation for surge support. Deployment 
+is finalized once the event list arrives.  
+Responsibility  Timing  Notes  
+Receive the final event list; map 
+requirements per venue based on 
+footfall and event type  Within 2 days of list 
+arriving  Identify what each venue needs. Pass 
+lists to IA team well ahead.  
+Prepare and share duty charts - 
+venue -specific, role -specific, time -
+specific  At least 5 days before 
+first event  Min 3 volunteers per active venue. 3 
+on standby.  
+Submit consolidated requirement lists 
+to IA; follow up until delivery confirmed  Well in advance - 
+delivery target 1 hr 
+before each event  Coordinate with Tech/Resource team 
+for manpower needs.  
+Bi-weekly virtual meetings from 20 
+May (every even Saturday)  From 20 May  Pre-event briefing the day before or 
+morning of each event.  
+On-ground: venue management, stage 
+management, seating and crowd 
+control, entry and exit control  All event days  Monitor real time. Escalate to team 
+lead immediately for any issue.  
+Post-event review right after each 
+event  Immediately after 
+each event  Log issues. Adjust for the next one.  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+--- PAGE 11 ---
+ 
+- Feedback & Registration Team  
+This team coordinates between students, cohort leaders, and the Tech team. Resources needed from Admin: a fan at the 
+main gate, pens, paper, ID cards for desk volunteers, water, and refreshments.  
+Task Notes  
+Build student Excel by date and time - coordinate 
+with cohort leader and Tech  Cross -reference against Tech's registration data. 
+Keep it updated as more students register.  
+Prepare daily feedback questions and send to Tech 
+for QR form integration  Tech builds the form. This team supplies the right 
+questions per event or day.  
+Collect document proof from cluster heads for all 
+new students  Running master document. Updated throughout 
+Aarambh.  
+Handle student and parent queries at registration 
+desks  Staff the desk through full registration windows.  
+Escalation: Tech issue goes to Tech team; course 
+issue to Faculty; payment issue to Accounts; 
+anything major to Admin or OH  Clear SOPs. Desk volunteers know the chain 
+before day one.  
+Resources request to Admin: fan at main gate, pens, 
+paper, ID cards, water, refreshments, registration 
+rooms allocated  Submit this request early - timeline for rooms not 
+yet decided.  
+  
+--- PAGE 12 ---
+ 
+03 / CRITICAL BLOCKERS  
+What's Stuck and Who Needs to Move  
+These are not reminders. They are active blockers - things that have not happened yet where another team 
+cannot proceed until they do. The sooner these are resolved, the less pressure on every subsequent deadline.  
+ 
+Who Needs to Deliver  What Is Needed  By When  What Breaks If They 
+Don't  
+Aman Pratap to Tech  Cashfree API key and 
+secret  Right now  Registration module is 
+completely blocked. No 
+payments, no 
+registration.  
+Design to Tech + everyone  Brand guide (theme, hex 
+codes, fonts)  20 May  No page build. No 
+posters. No standees. 
+Nothing downstream 
+can start.  
+OHs to Tech  Official registration open 
+date confirmed  Right now  Countdown timer 
+cannot be set. Cashfree 
+cannot switch to live 
+mode.  
+Admin/Finance to Tech  Firebase Blaze plan 
+activated (card + 
+autopay, budget up to 
+₹15,000)  Right now  Backend cannot be 
+deployed. Firestore, 
+Auth, Functions - all 
+blocked.  
+Design to Tech  Web assets handed over 
+(.png, .ttf files, correct 
+sizes)  Before 28 May  Website draft cannot be 
+built. 
+Media to Tech  Website content - About, 
+Events, FAQ, Team copy  28 May  Website has no content 
+to display.  
+OHs to Design (25 May 
+meeting)  Standee quantities, 
+banner placements, 
+apparel decisions  25 May  Design T3 and T4 
+cannot start. Printing 
+timeline at risk.  
+Design to Media  Newspaper layout and 
+QR design support  Before event 
+starts  Aarambh newspaper 
+cannot be produced.  
+IA to Events & Venue  Materials delivered 1 
+hour before each event  Per event  On-ground setup is 
+blocked for that event.  
+Tech to Discipline  Check -in portal live and 
+gate volunteers trained  Before 10 July  Gate check -in cannot 
+function.  
+Photography to Tech  Event photos uploaded to 
+OneDrive after each 
+event  After each event  Photo Finder cannot 
+index faces. Website 
+gallery blocked.  
+OSA to IA  Budget approvals and 
+procurement 
+authorization  Ongoing  IA cannot buy or 
+procure anything 
+without this.  
+--- PAGE 13 ---
+ 
+Who Needs to Deliver  What Is Needed  By When  What Breaks If They 
+Don't  
+IA to All Teams  Venue layout map shared  5 July  Every other team's on -
+ground planning is 
+blocked.  
+    
+  
+--- PAGE 14 ---
+ 
+04 / ASAP ITEMS  
+No Fixed Date  
+These items do not have a calendar deadline but they are blocking progress. Every day they sit undone, 
+something else gets tighter.  
+ 
+– Aman Pratap: share Cashfree API key and secret with the Tech team. Registration is completely 
+blocked without this.  
+– OHs: confirm the official registration open date with the Tech team. They cannot set the 
+countdown or switch payments to live mode.  
+– Admin and Finance: activate the Firebase Blaze plan with a card for autopay. Budget is up to 
+₹15,000. Backend deployment is blocked.  
+– Design Team: the theme and palette work should be started immediately - the hard deadline is 20 May 
+and the brand guide needs to reach every team.  
+– Admin and Finance: purchase the Kwikpic subscription for event photography hosting. Gallery page 
+cannot be built without it.  
+– Admin and Finance: order 3.5mm to Type -C audio adapters, 4 units, roughly ₹200 –400 each.  
+– Vikrant Sir: procure 40 walkie -talkies for use across all events. Zone leads need these for 
+communication.  
+– All team leads: confirm GitHub access at aarambh@jklu.edu.in. Login details are in the Tech 
+presentation.  
+– OHs: schedule the 25 May meeting with the full Design team. Standees, banners, backdrop, t -shirt and 
+wristband decisions need to happen in that one session.  
+– Events and Venue: join the kickoff virtual meeting on 20 May and formally request the full event list from 
+OHs.  
+  
+--- PAGE 15 ---
+ 
+05 / QUICK REFERENCE  
+One Line Per Date  
+Pin this somewhere. Check it every morning. If something on this list has not happened by its date, someone 
+needs to know that day.  
+ 
+Date What Should Have Happened  
+20 May  Design: Theme, logo and brand guide locked and sent to all teams  
+25 May  OH meeting done. Photography archive done. Social Media calendar approved.  
+28 May  Tech: website draft ready. Media: website content to Tech. Design: web assets to Tech.  
+3 June  Design: poster first drafts submitted  
+5 June  Tech: website deployed. Media: event and guest content done.  
+9 June  Design: all posters final  
+10 June  Tech: website live, check -in live, volunteer portal live. Registrations open. Social Media: 
+reg post + bio updated. Design: brochure done.  
+15 June  Tech: feedback portal live. IA: power and connectivity list submitted. Photography: gear 
+list submitted.  
+18 June  Design: first drafts of ID cards, certs and t -shirts submitted  
+19 June  Design: standees, banners and backdrop final  
+20 June  Tech: equipment list submitted. Hospitality: operational walkthrough done.  
+23 June  Design: ID cards and certs revision deadline  
+26 June  Design: all ID cards, certs and apparel absolutely final  
+28 June  Social Media: 10 –15 posts published in total  
+1 July  Discipline: protocols doc to OHs. Tech: Photo Finder testing starts.  
+5 July  IA: venue map to all teams. Media: pre -event prep done. Tech: Photo Finder live. 
+Hospitality: final briefing done.  
+10 July  All Teams: Duty sheets ready, check -in training done, devices tested  
+11 July  Day 0: all teams on ground, venue setup done, checklists signed off, briefings complete, 
+test runs done  
+12 July  Hospitality: fully on ground  
+13–21 July  AARAMBH - daily reports, incident logs, real -time content, full team on ground every day  
+21–24 July  Closure: breakdown, equipment returned, venue handed over, team appreciation done  
++5 days  Social Media: recap reel live. Media: final report submitted.  
+--- PAGE 16 ---
+ 
+Date What Should Have Happened  
++7 days  Media: aftermovie live (OHs approved). Photography: all photos on shared drive.  
+ 
