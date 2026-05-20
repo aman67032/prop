@@ -352,7 +352,7 @@ export default function CalendarPage() {
               <p className="text-sm text-gray-500 font-mono">INTEGRATED TASK & MEETING COMPENDIUM</p>
             </div>
             
-            {/* Search and Tab Switcher */}
+            {/* Search, Today reset and Tab Switcher */}
             <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 w-full md:w-auto">
               <div className="relative w-full sm:w-auto">
                 <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500" size={14} />
@@ -361,15 +361,36 @@ export default function CalendarPage() {
                   placeholder="SEARCH TIMELINE..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="bg-white/5 border border-white/10 rounded-lg pl-9 pr-4 py-2.5 md:py-2 text-xs font-mono text-white placeholder-gray-600 focus:outline-none focus:border-[#D4763C]/50 w-full sm:w-64 transition-all"
+                  className="bg-white/5 border border-white/10 rounded-lg pl-9 pr-8 py-2.5 md:py-2.2 text-xs font-mono text-white placeholder-gray-600 focus:outline-none focus:border-[#D4763C]/50 w-full sm:w-64 transition-all"
                 />
+                {searchQuery && (
+                  <button 
+                    onClick={() => setSearchQuery("")}
+                    className="absolute right-2.5 top-1/2 -translate-y-1/2 text-gray-500 hover:text-white font-bold text-sm bg-white/5 rounded-full w-5 h-5 flex items-center justify-center transition-all"
+                    title="Clear Search"
+                  >
+                    ×
+                  </button>
+                )}
               </div>
+
+              {/* Today Navigation shortcut */}
+              <button
+                onClick={() => {
+                  setSelectedDate("2026-05-20");
+                  setIsDrawerOpen(true);
+                }}
+                className="px-4 py-2.5 md:py-2 border border-white/10 hover:border-white/20 bg-white/5 hover:bg-white/10 rounded-lg text-xs font-mono transition-all flex items-center justify-center gap-1.5 text-gray-300 hover:text-white"
+                title="Go to Simulation Today (May 20)"
+              >
+                <Sparkles size={12} className="text-[#D4763C]" /> TODAY
+              </button>
 
               {/* Tab Selector */}
               <div className="bg-white/5 border border-white/10 p-0.5 rounded-lg flex w-full sm:w-auto">
                 <button
                   onClick={() => { setActiveTab("tasks"); setFilterType("all"); }}
-                  className={`flex-1 sm:flex-initial flex items-center justify-center gap-2 px-4 py-2 md:py-1.5 rounded-md text-xs font-mono transition-all ${
+                  className={`flex-1 sm:flex-initial flex items-center justify-center gap-2 px-4 py-2.5 md:py-2 rounded-md text-xs font-mono transition-all ${
                     activeTab === "tasks" 
                       ? "bg-[#D4763C] text-black font-bold shadow-[0_0_15px_rgba(212,118,60,0.3)]" 
                       : "text-gray-400 hover:text-white"
@@ -379,7 +400,7 @@ export default function CalendarPage() {
                 </button>
                 <button
                   onClick={() => { setActiveTab("meetings"); setFilterType("all"); }}
-                  className={`flex-1 sm:flex-initial flex items-center justify-center gap-2 px-4 py-2 md:py-1.5 rounded-md text-xs font-mono transition-all ${
+                  className={`flex-1 sm:flex-initial flex items-center justify-center gap-2 px-4 py-2.5 md:py-2 rounded-md text-xs font-mono transition-all ${
                     activeTab === "meetings" 
                       ? "bg-[#D4763C] text-black font-bold shadow-[0_0_15px_rgba(212,118,60,0.3)]" 
                       : "text-gray-400 hover:text-white"
@@ -464,9 +485,9 @@ export default function CalendarPage() {
             const totalDays = new Date(year, month + 1, 0).getDate();
             const cells = [];
 
-            // Pad previous empty blocks
+            // Pad previous empty blocks with increased mobile/desktop size consistency
             for (let i = 0; i < firstDayIndex; i++) {
-              cells.push(<div key={`empty-${i}`} className="bg-transparent border-transparent min-h-[50px] md:min-h-[90px] rounded-lg p-1 md:p-2 opacity-25 border border-white/5" />);
+              cells.push(<div key={`empty-${i}`} className="bg-transparent border-transparent min-h-[60px] md:min-h-[110px] rounded-lg p-1.5 md:p-2.5 opacity-25 border border-white/5" />);
             }
 
             // Pad remaining days of month
@@ -484,16 +505,16 @@ export default function CalendarPage() {
                     setSelectedDate(currentKey);
                     setIsDrawerOpen(true);
                   }}
-                  className={`min-h-[50px] md:min-h-[95px] border rounded-lg p-1 md:p-2 transition-all cursor-pointer flex flex-col justify-between group ${
+                  className={`min-h-[60px] md:min-h-[110px] border rounded-lg p-1.5 md:p-2.5 transition-all duration-300 cursor-pointer flex flex-col justify-between group hover:-translate-y-0.5 ${
                     isSelected 
-                      ? "border-[#D4763C] bg-[#D4763C]/5 shadow-[0_0_15px_rgba(212,118,60,0.15)]" 
+                      ? "border-[#D4763C] bg-[#D4763C]/8 shadow-[0_0_20px_rgba(212,118,60,0.25)]" 
                       : hasItems 
-                        ? "border-white/10 bg-[#0A0A0A] hover:border-white/30" 
-                        : "border-white/5 bg-[#030303] hover:border-white/20"
-                  } ${isToday ? "ring-1 ring-[#5BA88C]/50" : ""}`}
+                        ? "border-white/12 bg-[#0A0A0A] hover:border-white/40 hover:bg-[#0E0E0E] hover:shadow-[0_4px_20px_rgba(255,255,255,0.03)]" 
+                        : "border-white/5 bg-[#030303] hover:border-white/25 hover:bg-[#060606]"
+                  } ${isToday ? "ring-2 ring-[#5BA88C]/60" : ""}`}
                 >
                   <div className="flex justify-between items-center mb-1">
-                    <span className={`text-[10px] md:text-[11px] font-mono font-bold ${
+                    <span className={`text-[11px] md:text-[13px] font-mono font-bold ${
                       isSelected 
                         ? "text-[#D4763C]" 
                         : isToday 
@@ -507,14 +528,14 @@ export default function CalendarPage() {
                     </span>
                     
                     {hasItems && (
-                      <span className="text-[8px] md:text-[9px] font-mono px-0.5 md:px-1 rounded bg-white/5 text-gray-500 border border-white/5">
+                      <span className="text-[9px] md:text-[10px] font-mono px-1 md:px-1.5 rounded bg-white/10 text-gray-400 border border-white/5 font-semibold">
                         {dayItems.length}
                       </span>
                     )}
                   </div>
 
-                  {/* Desktop Day cell items (Chips) */}
-                  <div className="hidden md:flex space-y-1 mt-1 flex-1 flex flex-col justify-end overflow-hidden">
+                  {/* Desktop Day cell items (Chips) - Increased font size and padding */}
+                  <div className="hidden md:flex space-y-1.5 mt-1.5 flex-1 flex flex-col justify-end overflow-hidden">
                     {dayItems.slice(0, 3).map((item, idx) => {
                       const style = CHIP_STYLES[item.c] || CHIP_STYLES.soft;
                       return (
@@ -522,29 +543,29 @@ export default function CalendarPage() {
                           key={idx}
                           onMouseEnter={() => setHoveredItem({ date: currentKey, index: idx })}
                           onMouseLeave={() => setHoveredItem(null)}
-                          className={`relative text-[9px] font-mono truncate px-1.5 py-0.5 rounded border transition-colors ${style.bg} ${style.text} ${style.border}`}
+                          className={`relative text-[10px] font-mono truncate px-2 py-0.5 md:py-1 rounded border transition-colors ${style.bg} ${style.text} ${style.border}`}
                           title={item.t}
                         >
                           {item.t}
 
                           {/* Hover Tooltip (Desktop) */}
                           {hoveredItem?.date === currentKey && hoveredItem?.index === idx && item.tt && (
-                            <div className="absolute left-0 bottom-full mb-1 z-50 w-56 bg-black border border-white/15 p-3 rounded-lg shadow-2xl pointer-events-none text-left animate-fade-in-up">
+                            <div className="absolute left-0 bottom-full mb-1 z-50 w-64 bg-black border border-white/15 p-3 rounded-lg shadow-2xl pointer-events-none text-left animate-fade-in-up">
                               <div className="flex items-center gap-1.5 mb-1.5">
                                 <span className={`w-1.5 h-1.5 rounded-full ${style.dot}`} />
                                 <span className="text-[8px] text-gray-500 font-bold uppercase tracking-widest">
                                   {style.label}
                                 </span>
                               </div>
-                              <h5 className="font-bold text-white text-[10px] leading-tight mb-1">{item.t}</h5>
-                              <p className="text-[9px] text-gray-400 leading-normal font-sans font-medium whitespace-pre-wrap">{item.tt}</p>
+                              <h5 className="font-bold text-white text-[11px] leading-tight mb-1">{item.t}</h5>
+                              <p className="text-[10px] text-gray-400 leading-normal font-sans font-medium whitespace-pre-wrap">{item.tt}</p>
                             </div>
                           )}
                         </div>
                       );
                     })}
                     {dayItems.length > 3 && (
-                      <div className="text-[8px] font-mono text-[#D4763C] text-right font-bold pr-1">
+                      <div className="text-[9px] font-mono text-[#D4763C] text-right font-bold pr-1">
                         +{dayItems.length - 3} MORE
                       </div>
                     )}
@@ -567,7 +588,7 @@ export default function CalendarPage() {
             }
 
             return (
-              <div key={label} className="bg-[#0A0A0A]/50 border border-white/10 rounded-xl p-4 md:p-5 backdrop-blur-sm">
+              <div key={label} className="bg-[#0A0A0A]/50 border border-white/10 rounded-xl p-5 md:p-6 backdrop-blur-sm">
                 <div className="flex items-center justify-between border-b border-white/10 pb-3 md:pb-4 mb-4">
                   <h3 className="font-mono text-xs md:text-sm font-bold tracking-widest text-[#D4763C]">{label}</h3>
                   <div className="text-[9px] md:text-[10px] font-mono text-gray-500 uppercase">
@@ -575,10 +596,10 @@ export default function CalendarPage() {
                   </div>
                 </div>
 
-                {/* Day Header */}
+                {/* Day Header - Increased text size & contrast */}
                 <div className="grid grid-cols-7 gap-1 md:gap-2 mb-2">
                   {DAYS.map(day => (
-                    <div key={day} className="text-center text-[9px] md:text-[10px] font-mono text-gray-600 py-1 font-semibold uppercase">
+                    <div key={day} className="text-center text-[10px] md:text-[11px] font-mono text-gray-400 py-1 font-bold uppercase tracking-wider">
                       {day}
                     </div>
                   ))}
@@ -595,7 +616,7 @@ export default function CalendarPage() {
 
         {/* Right Column: Detailed Inspector Panel (Hidden on Mobile/Tablet, visible on desktop) */}
         <div className="hidden lg:block lg:col-span-1">
-          <div className="sticky top-20 bg-[#0A0A0A] border border-white/10 rounded-xl p-6 relative overflow-hidden flex flex-col min-h-[500px]">
+          <div className="sticky top-20 bg-[#0A0A0A] border border-white/10 rounded-xl p-6 relative overflow-hidden flex flex-col min-h-[520px]">
             <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-[#D4763C] to-transparent opacity-50" />
             
             <div className="flex items-center gap-2 mb-6">
@@ -620,7 +641,7 @@ export default function CalendarPage() {
                   </h4>
                 </div>
 
-                {/* Date Items list */}
+                {/* Date Items list - Enhanced font readability */}
                 <div className="space-y-4 flex-1 overflow-y-auto pr-1">
                   {selectedDateItems.length > 0 ? (
                     selectedDateItems.map((item, idx) => {
@@ -628,7 +649,7 @@ export default function CalendarPage() {
                       return (
                         <div 
                           key={idx} 
-                          className="bg-white/5 border border-white/5 hover:border-white/10 p-4 rounded-lg transition-all"
+                          className="bg-white/5 border border-white/5 hover:border-white/15 p-4 rounded-lg transition-all hover:bg-white/[0.07] hover:shadow-[0_4px_15px_rgba(0,0,0,0.3)]"
                         >
                           <div className="flex items-center gap-2 mb-2.5">
                             <span className={`w-2 h-2 rounded-full ${style.dot}`} />
@@ -647,16 +668,16 @@ export default function CalendarPage() {
                             )}
                           </div>
                           
-                          <h4 className="text-sm font-mono font-semibold text-white leading-snug mb-2">
+                          <h4 className="text-sm md:text-base font-mono font-semibold text-white leading-snug mb-2">
                             {item.t}
                           </h4>
                           
                           {item.tt ? (
-                            <p className="text-xs text-gray-400 leading-relaxed font-sans font-medium">
+                            <p className="text-xs md:text-sm text-gray-300 leading-relaxed font-sans font-medium whitespace-pre-wrap">
                               {item.tt}
                             </p>
                           ) : (
-                            <p className="text-xs text-gray-600 font-mono italic">
+                            <p className="text-xs md:text-sm text-gray-600 font-mono italic">
                               NO_DESCRIPTION_PROVIDED
                             </p>
                           )}
@@ -705,8 +726,8 @@ export default function CalendarPage() {
           >
             <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-[#D4763C] to-transparent opacity-50" />
             
-            {/* Drawer Drag Indicator Handle */}
-            <div className="w-10 h-1 bg-white/20 rounded-full mx-auto mb-4" />
+            {/* Drawer Drag Indicator Handle - Increased size and touch area */}
+            <div className="w-14 h-1.5 bg-white/25 rounded-full mx-auto mb-4" />
             
             <div className="flex items-center justify-between mb-4">
               <div className="flex items-center gap-2">
@@ -736,7 +757,7 @@ export default function CalendarPage() {
               </h4>
             </div>
 
-            {/* Content List */}
+            {/* Content List - Bigger fonts for Mobile readability */}
             <div className="space-y-3 overflow-y-auto flex-1 pb-8 pr-1 scrollbar-thin">
               {selectedDateItems.length > 0 ? (
                 selectedDateItems.map((item, idx) => {
@@ -763,16 +784,16 @@ export default function CalendarPage() {
                         )}
                       </div>
                       
-                      <h4 className="text-xs font-mono font-semibold text-white leading-snug mb-1.5">
+                      <h4 className="text-sm md:text-base font-mono font-semibold text-white leading-snug mb-1.5">
                         {item.t}
                       </h4>
                       
                       {item.tt ? (
-                        <p className="text-[11px] text-gray-400 leading-relaxed font-sans font-medium whitespace-pre-wrap">
+                        <p className="text-[13px] md:text-sm text-gray-300 leading-relaxed font-sans font-medium whitespace-pre-wrap">
                           {item.tt}
                         </p>
                       ) : (
-                        <p className="text-[11px] text-gray-600 font-mono italic">
+                        <p className="text-[13px] md:text-sm text-gray-600 font-mono italic">
                           NO_DESCRIPTION_PROVIDED
                         </p>
                       )}
@@ -792,4 +813,5 @@ export default function CalendarPage() {
     </div>
   );
 }
+
 
