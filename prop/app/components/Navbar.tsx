@@ -34,6 +34,7 @@ export default function Navbar() {
               { href: "/", label: "DASHBOARD" },
               { href: "/team", label: "TEAM_DATA" },
               { href: "/deadlines", label: "DEADLINES" },
+              { href: "/calendar", label: "CALENDAR" },
             ].map(link => (
               <Link key={link.href} href={link.href}
                 className="px-4 py-2 rounded-md text-xs font-mono text-gray-400 hover:text-white hover:bg-white/5 border border-transparent hover:border-white/10 transition-all">
@@ -76,6 +77,7 @@ export default function Navbar() {
               { href: "/", label: "DASHBOARD" },
               { href: "/team", label: "TEAM_DATA" },
               { href: "/deadlines", label: "DEADLINES" },
+              { href: "/calendar", label: "CALENDAR" },
             ].map(link => (
               <Link key={link.href} href={link.href} onClick={() => setMenuOpen(false)}
                 className="block px-4 py-2 text-xs text-gray-400 hover:text-white hover:bg-white/5 rounded">

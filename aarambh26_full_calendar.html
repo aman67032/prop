@@ -1,0 +1,300 @@
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--font-sans)}
+.wrap{padding:1rem 0}
+.tabs{display:flex;gap:8px;margin-bottom:1.5rem}
+.tab{padding:8px 20px;border:0.5px solid var(--color-border-secondary);border-radius:var(--border-radius-md);cursor:pointer;font-size:13px;font-weight:500;background:var(--color-background-primary);color:var(--color-text-secondary);transition:all .15s}
+.tab.active{background:var(--color-background-secondary);color:var(--color-text-primary);border-color:var(--color-border-primary)}
+.legend{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:1.25rem}
+.leg{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--color-text-secondary)}
+.dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
+.month-block{margin-bottom:2rem}
+.month-label{font-size:13px;font-weight:500;color:var(--color-text-secondary);letter-spacing:.04em;margin-bottom:.5rem;padding-bottom:.4rem;border-bottom:0.5px solid var(--color-border-tertiary)}
+.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:3px}
+.day-name{font-size:11px;color:var(--color-text-tertiary);text-align:center;padding:4px 0;font-weight:500}
+.day{min-height:80px;border:0.5px solid var(--color-border-tertiary);border-radius:6px;padding:5px 6px;background:var(--color-background-primary);position:relative}
+.day.empty{background:transparent;border-color:transparent;min-height:80px}
+.day-num{font-size:11px;font-weight:500;color:var(--color-text-secondary);margin-bottom:4px}
+.day.has-item .day-num{color:var(--color-text-primary)}
+.chip{font-size:10px;padding:2px 5px;border-radius:4px;margin-bottom:2px;line-height:1.35;word-break:break-word;cursor:default;display:block}
+.chip.hard{background:#EEEDFE;color:#3C3489}
+.chip.soft{background:#EAF3DE;color:#27500A}
+.chip.changed{background:#FAEEDA;color:#633806}
+.chip.new{background:#E6F1FB;color:#0C447C}
+.chip.mtg{background:#EEEDFE;color:#3C3489}
+.chip.mtg-new{background:#E1F5EE;color:#085041}
+.chip.event{background:#FCEBEB;color:#791F1F;font-weight:500}
+.tooltip-wrap{position:relative}
+.tooltip-wrap:hover .tt{display:block}
+.tt{display:none;position:absolute;left:0;top:100%;z-index:99;background:var(--color-background-primary);border:0.5px solid var(--color-border-primary);border-radius:var(--border-radius-md);padding:8px 10px;font-size:11px;color:var(--color-text-primary);width:200px;line-height:1.5;box-shadow:0 2px 8px rgba(0,0,0,.08);pointer-events:none}
+.tt strong{display:block;margin-bottom:4px;font-size:12px}
+.section-badge{font-size:10px;padding:1px 6px;border-radius:3px;margin-left:6px;vertical-align:middle}
+.changed-badge{background:#FAEEDA;color:#633806}
+.new-badge{background:#E6F1FB;color:#0C447C}
+</style>
+
+<div class="wrap">
+<div class="tabs">
+  <button class="tab active" onclick="switchTab('tasks')"><i class="ti ti-checkbox" aria-hidden="true"></i> Task calendar</button>
+  <button class="tab" onclick="switchTab('meetings')"><i class="ti ti-calendar" aria-hidden="true"></i> Meeting calendar</button>
+</div>
+
+<div id="view-tasks">
+<div class="legend">
+  <span class="leg"><span class="dot" style="background:#7F77DD"></span>Hard deadline</span>
+  <span class="leg"><span class="dot" style="background:#639922"></span>Regular deadline</span>
+  <span class="leg"><span class="dot" style="background:#EF9F27"></span>Date shifted ⚠️</span>
+  <span class="leg"><span class="dot" style="background:#378ADD"></span>New task (not in v2)</span>
+  <span class="leg"><span class="dot" style="background:#E24B4A"></span>Event execution</span>
+</div>
+<div id="task-cal"></div>
+</div>
+
+<div id="view-meetings" style="display:none">
+<div class="legend">
+  <span class="leg"><span class="dot" style="background:#7F77DD"></span>Meeting (from v2)</span>
+  <span class="leg"><span class="dot" style="background:#1D9E75"></span>New meeting ⚠️</span>
+  <span class="leg"><span class="dot" style="background:#E24B4A"></span>Event days</span>
+</div>
+<div id="mtg-cal"></div>
+</div>
+</div>
+
+<script>
+const TASKS = {
+  "2026-05-20":[
+    {t:"Brand guide LOCKED (Design)", c:"hard", tt:"Theme, colour, logo & typography. Hex codes + fonts to Tech. Hard deadline — nothing starts without this."},
+    {t:"Brand guide → all teams", c:"hard", tt:"Design distributes brand guide to every team."},
+  ],
+  "2026-05-25":[
+    {t:"Photos archive 100–200 (Photography)", c:"soft", tt:"Edited & sorted, sent to Tech. Reduced from 300–500 in v2.", changed:true},
+    {t:"Content calendar (Social Media)", c:"soft", tt:"Drafted & approved by OHs."},
+    {t:"Web assets (.png .ttf) → Tech (Design)", c:"soft", tt:"Files named clearly, handed over task by task."},
+  ],
+  "2026-05-28":[
+    {t:"Website content (Media → Tech)", c:"hard", tt:"About, Events, FAQ, Team copy. OHs approve before submission."},
+    {t:"Kwikpic finance doc + Photo Finder plan", c:"new", tt:"NEW task. Document of Kwikpic & its finance doc for Photo Finder planning of execution."},
+    {t:"Website draft ready (Tech)", c:"hard", tt:"Shared with team leads for review."},
+  ],
+  "2026-06-01":[
+    {t:"Final schedule (OH → full team)", c:"hard", tt:"Event schedule day+session-wise to Tech."},
+    {t:"Student rules & guidelines (Media → Tech)", c:"soft", tt:""},
+    {t:"Campus Map details (Aman → Tech)", c:"new", tt:"NEW task. Map details shared by Aman to Tech team."},
+    {t:"Campus Map made by Design for displays", c:"new", tt:"NEW task. Design creates digital campus map for display boards."},
+  ],
+  "2026-06-02":[
+    {t:"Finalize vendors (Events, Design, equip)", c:"new", tt:"NEW task. Vendor of Event & Venue, Design & other equipment finalized."},
+  ],
+  "2026-06-03":[
+    {t:"Poster first drafts (Design)", c:"soft", tt:"Follow theme from brand guide. Separate print + digital files."},
+  ],
+  "2026-06-05":[
+    {t:"Website DEPLOYED to Firebase (Tech)", c:"hard", tt:"In any condition — non-negotiable. Mobile-responsive, countdown timer."},
+    {t:"Event descriptions + speaker bios (Media)", c:"soft", tt:"Every event needs its own copy. Guest bios need photo approval."},
+  ],
+  "2026-06-09":[
+    {t:"All posters FINAL — print-ready (Design)", c:"soft", tt:"Correct DPI. Print + web versions both."},
+  ],
+  "2026-06-10":[
+    {t:"Website LIVE", c:"hard", tt:"SEO, mobile-responsive, countdown timer live."},
+    {t:"Registrations OPEN", c:"hard", tt:"Cashfree payment integration. Test sandbox first."},
+    {t:"Check-in system LIVE (Tech)", c:"hard", tt:"QR per student, multi-gate, offline fallback ready."},
+    {t:"Volunteer portal LIVE (Tech)", c:"hard", tt:"Role-based access, downloadable duty sheet."},
+    {t:"Brochure FINAL (Design)", c:"soft", tt:"Welcome note, theme reveal, events, schedule, venue map."},
+    {t:"Insta post: Registration Open (Social Media)", c:"hard", tt:"Bio + highlights updated same day."},
+  ],
+  "2026-06-15":[
+    {t:"Feedback & Analytics Portal LIVE + testing (Tech)", c:"soft", tt:"QR per event, anonymous/named toggle. OH role-based access."},
+    {t:"Discipline Doc FINAL — all 3 types", c:"changed", tt:"SHIFTED from 1 July to 15 June. Covers volunteer, team leader, new student sections."},
+    {t:"IA requirements list → OHs", c:"soft", tt:"Power, connectivity, extension cords, WiFi, generator."},
+    {t:"Camera & gear list → OHs (Photography)", c:"soft", tt:"DSLR vs mirrorless, lens list, college vs rent gap."},
+  ],
+  "2026-06-18":[
+    {t:"ID cards first drafts — 5 variants (Design)", c:"soft", tt:"Volunteer, Student, OH, Team Leader, OSA. B6 size, each variant looks distinct."},
+    {t:"Certs first drafts (Design)", c:"soft", tt:"OH cert with photo, Coordinator & Volunteer standard."},
+    {t:"T-shirts & wristbands first drafts (Design)", c:"soft", tt:"If approved in 25 May OH meeting."},
+  ],
+  "2026-06-19":[
+    {t:"Standees, banners, backdrop — ALL FINAL (Design)", c:"soft", tt:"Factor 3–5 days printing time. Print-ready DPI only."},
+  ],
+  "2026-06-20":[
+    {t:"Tech equipment list (rent/buy) submitted", c:"soft", tt:"Include campus equipment available to issue."},
+  ],
+  "2026-06-23":[
+    {t:"ID cards, Certs, T-shirts FINAL → printing", c:"changed", tt:"SHIFTED from 26 June to 23 June. 3 days earlier = more print lead time."},
+  ],
+  "2026-06-24":[
+    {t:"Kwikpic (Photo Finder) testing begins", c:"changed", tt:"SHIFTED from 1 July to 24 June. 1 week earlier — better bug-fix buffer."},
+  ],
+  "2026-06-25":[
+    {t:"Duty chart FINALIZED", c:"changed", tt:"SHIFTED from 10 July to 25 June. 15-day shift — ensures teams have chart well in advance."},
+  ],
+  "2026-06-28":[
+    {t:"Discipline submits duty chart → all teams", c:"new", tt:"NEW task. Duty chart from Discipline distributed to every team."},
+    {t:"10–15 Instagram posts published (Social Media)", c:"soft", tt:"Cumulative total by this date. At least 1 post every 2–3 days."},
+  ],
+  "2026-07-01":[
+    {t:"Venue layout map → all teams (IA)", c:"changed", tt:"SHIFTED from 5 July to 1 July. All on-ground planning depends on this."},
+    {t:"Equipment check on ground", c:"soft", tt:"Physical inspection of every item."},
+  ],
+  "2026-07-05":[
+    {t:"Photo Finder fully LIVE (Tech)", c:"soft", tt:"Invite-only beta to start. Photography uploads power the face recognition."},
+    {t:"Media: pre-event prep done", c:"soft", tt:"Historical data, research, past editions all complete."},
+    {t:"Hospitality: final briefing meeting", c:"soft", tt:"Full readiness check, emergency protocols, Q&A."},
+  ],
+  "2026-07-10":[
+    {t:"Duty sheets ready — all teams", c:"hard", tt:"Volunteer check-in training done. Devices tested."},
+  ],
+  "2026-07-11":[
+    {t:"Day 0: All teams on ground", c:"event", tt:"Full venue walkthrough + OH sign-offs. Safety check every zone."},
+    {t:"Training: Discipline + Registration", c:"event", tt:"Check-in test run. Evacuation routes practiced."},
+  ],
+  "2026-07-12":[
+    {t:"Hospitality fully on ground", c:"event", tt:"Every post covered. Report 45 min early."},
+    {t:"Registration offline started", c:"event", tt:"Day + night shifts per cohort info."},
+  ],
+  "2026-07-13":[{t:"AARAMBH BEGINS 🎉", c:"event", tt:"13–21 July: All teams on ground every day."}],
+  "2026-07-21":[{t:"Event ends. Venue handover begins.", c:"event", tt:"21–24 July: Breakdown, gear returned, admin handover, team appreciation."}],
+};
+
+const MEETINGS = {
+  "2026-05-25":[
+    {t:"① OSA + OH + Design", c:"mtg-new", tt:"Standees/banners/backdrop sizes. T-shirts, wristbands, ID cards decided. Pre-final schedule. Evening activity requirements. Vendor check. Invitation process. Registration amount."},
+  ],
+  "2026-05-30":[
+    {t:"② Clusters + OH + Deepak Sir", c:"mtg-new", tt:"NEW meeting. Admission data review. Distribution process planning."},
+  ],
+  "2026-06-01":[
+    {t:"③ OH + Deepak Sir + Accounts", c:"mtg-new", tt:"Registration process. How it will work & display."},
+    {t:"③.1 → Tech Team (after accounts)", c:"mtg-new", tt:"After accounts meeting. Progress update. Full structure flow. IT team requirements."},
+    {t:"③.2 → Media + Design (after Tech)", c:"mtg-new", tt:"After Tech meeting. Aarambh brochure discussion."},
+  ],
+  "2026-06-02":[
+    {t:"④ OH + Discipline Team", c:"mtg-new", tt:"Policies, protocol & rules. Discipline doc deadline shifted: 1 July → 15 June."},
+  ],
+  "2026-06-03":[
+    {t:"⑤ OH + Deepak Sir + IT Team", c:"mtg-new", tt:"Digital Campus Map. Hosting of Aarambh website. IT team process. All requirements submission to IT team."},
+  ],
+  "2026-06-05":[
+    {t:"⑥ Feedback & Registration Team", c:"mtg-new", tt:"Finalize their workflow. Walk them through the entire process."},
+  ],
+  "2026-06-07":[
+    {t:"⑦ Deepak Sir + OH + Design", c:"mtg-new", tt:"Poster of Aarambh review. Brochure progress update."},
+  ],
+  "2026-06-10":[
+    {t:"⑧ Tech Team", c:"mtg", tt:"Registration live review & branding. Feedback & Analytics system structure & progress."},
+  ],
+  "2026-06-11":[
+    {t:"⑨ Photography (1st half)", c:"mtg-new", tt:"Equipment list, budget. Second half joined by Social Media for their requirements. Final combined suggestions."},
+  ],
+  "2026-06-15":[
+    {t:"⑩ Progress review: OH + OSA", c:"mtg", tt:"Progress so far check-in between OHs and OSA."},
+  ],
+  "2026-06-16":[
+    {t:"⑪ All OHs + Design", c:"mtg-new", tt:"ID card, t-shirt, wristband design discussion. Progress on standees, banners, stage backdrop, gate posters."},
+  ],
+  "2026-06-20":[
+    {t:"⑫ Hospitality + Food & Accom", c:"mtg", tt:"Operational walkthrough meeting. Event-day flow, help desk setup, guest assignments."},
+  ],
+  "2026-06-21":[
+    {t:"⑬ All Team Leaders", c:"mtg-new", tt:"Finalizing duty chart."},
+  ],
+  "2026-06-22":[
+    {t:"⑭ Clusters (open discussion)", c:"mtg-new", tt:"Open discussion — anything pending or unresolved."},
+  ],
+  "2026-06-23":[
+    {t:"⑮ Media Team", c:"mtg-new", tt:"Operation workflow. Pre-event all documents finalized."},
+  ],
+  "2026-06-26":[
+    {t:"⑯ Discipline (DC) Team", c:"mtg-new", tt:"Duty chart vs all team duty charts. All restricted area policy finalized."},
+  ],
+  "2026-07-01":[
+    {t:"⑰ Full Team (OH + OSA side)", c:"mtg-new", tt:"Full team meeting from OH & OSA side."},
+  ],
+  "2026-07-10":[
+    {t:"OH + OSA offline meeting", c:"mtg", tt:"Final alignment before event. Ground-readiness check."},
+  ],
+  "2026-07-11":[
+    {t:"Day 0 coordination", c:"event", tt:"On-ground coordination. No formal meeting — all teams present."},
+  ],
+  "2026-07-13":[{t:"AARAMBH BEGINS 🎉", c:"event", tt:"Daily morning OH meetings + end-of-day debrief for all 9 event days."}],
+  "2026-07-21":[{t:"Post-event review: OSA + OHs", c:"event", tt:"Assessment of successes, challenges, recommendations."}],
+};
+
+const MONTHS = [
+  {year:2026, month:4, label:"May 2026"},
+  {year:2026, month:5, label:"June 2026"},
+  {year:2026, month:6, label:"July 2026"},
+];
+
+const DAYS = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
+
+function dateKey(y,m,d){return `${y}-${String(m+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`}
+
+function buildCal(containerId, data){
+  const el = document.getElementById(containerId);
+  el.innerHTML = "";
+  MONTHS.forEach(({year, month, label}) => {
+    const block = document.createElement("div");
+    block.className = "month-block";
+    const lbl = document.createElement("div");
+    lbl.className = "month-label";
+    lbl.textContent = label;
+    block.appendChild(lbl);
+    const grid = document.createElement("div");
+    grid.className = "cal-grid";
+    DAYS.forEach(d => {
+      const dn = document.createElement("div");
+      dn.className = "day-name";
+      dn.textContent = d;
+      grid.appendChild(dn);
+    });
+    const first = new Date(year, month, 1).getDay();
+    for(let i=0;i<first;i++){
+      const empty = document.createElement("div");
+      empty.className = "day empty";
+      grid.appendChild(empty);
+    }
+    const days = new Date(year, month+1, 0).getDate();
+    for(let d=1;d<=days;d++){
+      const key = dateKey(year, month, d);
+      const items = data[key] || [];
+      const cell = document.createElement("div");
+      cell.className = "day" + (items.length ? " has-item" : "");
+      const num = document.createElement("div");
+      num.className = "day-num";
+      num.textContent = d;
+      cell.appendChild(num);
+      items.forEach(item => {
+        const wrap = document.createElement("div");
+        wrap.className = "tooltip-wrap";
+        const chip = document.createElement("span");
+        chip.className = "chip " + item.c;
+        chip.textContent = item.t;
+        wrap.appendChild(chip);
+        if(item.tt){
+          const tt = document.createElement("div");
+          tt.className = "tt";
+          tt.innerHTML = `<strong>${item.t}</strong>${item.tt}`;
+          wrap.appendChild(tt);
+        }
+        cell.appendChild(wrap);
+      });
+      grid.appendChild(cell);
+    }
+    block.appendChild(grid);
+    el.appendChild(block);
+  });
+}
+
+function switchTab(tab){
+  document.querySelectorAll(".tab").forEach(t => t.classList.remove("active"));
+  event.target.classList.add("active");
+  document.getElementById("view-tasks").style.display = tab==="tasks" ? "block" : "none";
+  document.getElementById("view-meetings").style.display = tab==="meetings" ? "block" : "none";
+}
+
+buildCal("task-cal", TASKS);
+buildCal("mtg-cal", MEETINGS);
+</script>
