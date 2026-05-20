@@ -303,6 +303,7 @@ export default function CalendarPage() {
   const [filterType, setFilterType] = useState<string>("all");
   const [selectedDate, setSelectedDate] = useState<string | null>("2026-05-20");
   const [hoveredItem, setHoveredItem] = useState<{ date: string; index: number } | null>(null);
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
   const activeData = activeTab === "tasks" ? TASKS : MEETINGS;
 
@@ -352,23 +353,23 @@ export default function CalendarPage() {
             </div>
             
             {/* Search and Tab Switcher */}
-            <div className="flex flex-wrap items-center gap-3">
-              <div className="relative">
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 w-full md:w-auto">
+              <div className="relative w-full sm:w-auto">
                 <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500" size={14} />
                 <input
                   type="text"
                   placeholder="SEARCH TIMELINE..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="bg-white/5 border border-white/10 rounded-lg pl-9 pr-4 py-2 text-xs font-mono text-white placeholder-gray-600 focus:outline-none focus:border-[#D4763C]/50 w-full sm:w-64 transition-all"
+                  className="bg-white/5 border border-white/10 rounded-lg pl-9 pr-4 py-2.5 md:py-2 text-xs font-mono text-white placeholder-gray-600 focus:outline-none focus:border-[#D4763C]/50 w-full sm:w-64 transition-all"
                 />
               </div>
 
               {/* Tab Selector */}
-              <div className="bg-white/5 border border-white/10 p-0.5 rounded-lg flex">
+              <div className="bg-white/5 border border-white/10 p-0.5 rounded-lg flex w-full sm:w-auto">
                 <button
                   onClick={() => { setActiveTab("tasks"); setFilterType("all"); }}
-                  className={`flex items-center gap-2 px-4 py-1.5 rounded-md text-xs font-mono transition-all ${
+                  className={`flex-1 sm:flex-initial flex items-center justify-center gap-2 px-4 py-2 md:py-1.5 rounded-md text-xs font-mono transition-all ${
                     activeTab === "tasks" 
                       ? "bg-[#D4763C] text-black font-bold shadow-[0_0_15px_rgba(212,118,60,0.3)]" 
                       : "text-gray-400 hover:text-white"
@@ -378,7 +379,7 @@ export default function CalendarPage() {
                 </button>
                 <button
                   onClick={() => { setActiveTab("meetings"); setFilterType("all"); }}
-                  className={`flex items-center gap-2 px-4 py-1.5 rounded-md text-xs font-mono transition-all ${
+                  className={`flex-1 sm:flex-initial flex items-center justify-center gap-2 px-4 py-2 md:py-1.5 rounded-md text-xs font-mono transition-all ${
                     activeTab === "meetings" 
                       ? "bg-[#D4763C] text-black font-bold shadow-[0_0_15px_rgba(212,118,60,0.3)]" 
                       : "text-gray-400 hover:text-white"
@@ -454,10 +455,10 @@ export default function CalendarPage() {
       </section>
 
       {/* Main Workspace: Calendar Grid + Interactive Drawer */}
-      <div className="max-w-7xl mx-auto px-6 py-8 grid lg:grid-cols-3 gap-8 relative z-20">
+      <div className="max-w-7xl mx-auto px-4 md:px-6 py-6 md:py-8 grid lg:grid-cols-3 gap-6 md:gap-8 relative z-20">
         
         {/* Left / Center Columns: Months Grids */}
-        <div className="lg:col-span-2 space-y-12">
+        <div className="lg:col-span-2 space-y-8 md:space-y-12">
           {MONTHS.map(({ year, month, label }) => {
             const firstDayIndex = new Date(year, month, 1).getDay();
             const totalDays = new Date(year, month + 1, 0).getDate();
@@ -465,7 +466,7 @@ export default function CalendarPage() {
 
             // Pad previous empty blocks
             for (let i = 0; i < firstDayIndex; i++) {
-              cells.push(<div key={`empty-${i}`} className="bg-transparent border-transparent min-h-[90px] rounded-lg p-2 opacity-25 border border-white/5" />);
+              cells.push(<div key={`empty-${i}`} className="bg-transparent border-transparent min-h-[50px] md:min-h-[90px] rounded-lg p-1 md:p-2 opacity-25 border border-white/5" />);
             }
 
             // Pad remaining days of month
@@ -479,8 +480,11 @@ export default function CalendarPage() {
               cells.push(
                 <div
                   key={currentKey}
-                  onClick={() => setSelectedDate(currentKey)}
-                  className={`min-h-[95px] border rounded-lg p-2 transition-all cursor-pointer flex flex-col justify-between group ${
+                  onClick={() => {
+                    setSelectedDate(currentKey);
+                    setIsDrawerOpen(true);
+                  }}
+                  className={`min-h-[50px] md:min-h-[95px] border rounded-lg p-1 md:p-2 transition-all cursor-pointer flex flex-col justify-between group ${
                     isSelected 
                       ? "border-[#D4763C] bg-[#D4763C]/5 shadow-[0_0_15px_rgba(212,118,60,0.15)]" 
                       : hasItems 
@@ -489,7 +493,7 @@ export default function CalendarPage() {
                   } ${isToday ? "ring-1 ring-[#5BA88C]/50" : ""}`}
                 >
                   <div className="flex justify-between items-center mb-1">
-                    <span className={`text-[11px] font-mono font-bold ${
+                    <span className={`text-[10px] md:text-[11px] font-mono font-bold ${
                       isSelected 
                         ? "text-[#D4763C]" 
                         : isToday 
@@ -499,18 +503,18 @@ export default function CalendarPage() {
                             : "text-gray-600"
                     }`}>
                       {day}
-                      {isToday && <span className="text-[9px] text-[#5BA88C] ml-1 opacity-75">(TODAY)</span>}
+                      {isToday && <span className="hidden md:inline text-[9px] text-[#5BA88C] ml-1 opacity-75">(TODAY)</span>}
                     </span>
                     
                     {hasItems && (
-                      <span className="text-[9px] font-mono px-1 rounded bg-white/5 text-gray-500 border border-white/5">
+                      <span className="text-[8px] md:text-[9px] font-mono px-0.5 md:px-1 rounded bg-white/5 text-gray-500 border border-white/5">
                         {dayItems.length}
                       </span>
                     )}
                   </div>
 
-                  {/* Day cell items (Chips) */}
-                  <div className="space-y-1 mt-1 flex-1 flex flex-col justify-end overflow-hidden">
+                  {/* Desktop Day cell items (Chips) */}
+                  <div className="hidden md:flex space-y-1 mt-1 flex-1 flex flex-col justify-end overflow-hidden">
                     {dayItems.slice(0, 3).map((item, idx) => {
                       const style = CHIP_STYLES[item.c] || CHIP_STYLES.soft;
                       return (
@@ -545,30 +549,43 @@ export default function CalendarPage() {
                       </div>
                     )}
                   </div>
+
+                  {/* Mobile Dot Indicators */}
+                  <div className="md:hidden flex flex-wrap gap-0.5 justify-center mt-1">
+                    {dayItems.slice(0, 4).map((item, idx) => {
+                      const style = CHIP_STYLES[item.c] || CHIP_STYLES.soft;
+                      return (
+                        <span key={idx} className={`w-1.5 h-1.5 rounded-full ${style.dot}`} />
+                      );
+                    })}
+                    {dayItems.length > 4 && (
+                      <span className="w-1 h-1 rounded-full bg-white opacity-40 self-center" />
+                    )}
+                  </div>
                 </div>
               );
             }
 
             return (
-              <div key={label} className="bg-[#0A0A0A]/50 border border-white/10 rounded-xl p-5 backdrop-blur-sm">
-                <div className="flex items-center justify-between border-b border-white/10 pb-4 mb-4">
-                  <h3 className="font-mono text-sm font-bold tracking-widest text-[#D4763C]">{label}</h3>
-                  <div className="text-[10px] font-mono text-gray-500 uppercase">
+              <div key={label} className="bg-[#0A0A0A]/50 border border-white/10 rounded-xl p-4 md:p-5 backdrop-blur-sm">
+                <div className="flex items-center justify-between border-b border-white/10 pb-3 md:pb-4 mb-4">
+                  <h3 className="font-mono text-xs md:text-sm font-bold tracking-widest text-[#D4763C]">{label}</h3>
+                  <div className="text-[9px] md:text-[10px] font-mono text-gray-500 uppercase">
                     SYS.GRID_VIEW // {year}.M0{month + 1}
                   </div>
                 </div>
 
                 {/* Day Header */}
-                <div className="grid grid-cols-7 gap-2 mb-2">
+                <div className="grid grid-cols-7 gap-1 md:gap-2 mb-2">
                   {DAYS.map(day => (
-                    <div key={day} className="text-center text-[10px] font-mono text-gray-600 py-1 font-semibold uppercase">
+                    <div key={day} className="text-center text-[9px] md:text-[10px] font-mono text-gray-600 py-1 font-semibold uppercase">
                       {day}
                     </div>
                   ))}
                 </div>
 
                 {/* Grid Cells */}
-                <div className="grid grid-cols-7 gap-2">
+                <div className="grid grid-cols-7 gap-1 md:gap-2">
                   {cells}
                 </div>
               </div>
@@ -576,8 +593,8 @@ export default function CalendarPage() {
           })}
         </div>
 
-        {/* Right Column: Detailed Inspector Panel */}
-        <div className="lg:col-span-1">
+        {/* Right Column: Detailed Inspector Panel (Hidden on Mobile/Tablet, visible on desktop) */}
+        <div className="hidden lg:block lg:col-span-1">
           <div className="sticky top-20 bg-[#0A0A0A] border border-white/10 rounded-xl p-6 relative overflow-hidden flex flex-col min-h-[500px]">
             <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-[#D4763C] to-transparent opacity-50" />
             
@@ -675,6 +692,104 @@ export default function CalendarPage() {
         </div>
 
       </div>
+
+      {/* Mobile Drawer (Bottom Sheet) */}
+      {isDrawerOpen && selectedDate && (
+        <div 
+          className="fixed inset-0 z-50 lg:hidden bg-black/70 backdrop-blur-sm flex items-end justify-center animate-fade-in" 
+          onClick={() => setIsDrawerOpen(false)}
+        >
+          <div 
+            className="w-full max-h-[85vh] bg-[#0A0A0A] border-t border-white/10 rounded-t-2xl p-5 relative overflow-hidden flex flex-col animate-slide-up"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-[#D4763C] to-transparent opacity-50" />
+            
+            {/* Drawer Drag Indicator Handle */}
+            <div className="w-10 h-1 bg-white/20 rounded-full mx-auto mb-4" />
+            
+            <div className="flex items-center justify-between mb-4">
+              <div className="flex items-center gap-2">
+                <Layers size={14} className="text-[#D4763C]" />
+                <h2 className="text-[10px] font-mono text-gray-400 uppercase tracking-widest">Detail_Inspector</h2>
+              </div>
+              <button 
+                onClick={() => setIsDrawerOpen(false)}
+                className="text-[10px] font-mono text-gray-400 hover:text-white px-2 py-1 bg-white/5 border border-white/10 rounded transition-all"
+              >
+                CLOSE
+              </button>
+            </div>
+
+            {/* Date Heading */}
+            <div className="border-b border-white/10 pb-3 mb-4">
+              <span className="text-[9px] font-mono text-[#D4763C] uppercase tracking-wider block mb-0.5">
+                SELECTED COORDINATES
+              </span>
+              <h4 className="text-base font-bold font-mono text-white">
+                {new Date(selectedDate).toLocaleDateString("en-US", { 
+                  weekday: "short", 
+                  month: "long", 
+                  day: "numeric", 
+                  year: "numeric" 
+                }).toUpperCase()}
+              </h4>
+            </div>
+
+            {/* Content List */}
+            <div className="space-y-3 overflow-y-auto flex-1 pb-8 pr-1 scrollbar-thin">
+              {selectedDateItems.length > 0 ? (
+                selectedDateItems.map((item, idx) => {
+                  const style = CHIP_STYLES[item.c] || CHIP_STYLES.soft;
+                  return (
+                    <div 
+                      key={idx} 
+                      className="bg-white/5 border border-white/5 p-4 rounded-lg"
+                    >
+                      <div className="flex flex-wrap items-center gap-1.5 mb-2">
+                        <span className={`w-1.5 h-1.5 rounded-full ${style.dot}`} />
+                        <span className="text-[8px] font-mono font-bold text-gray-400 tracking-wider">
+                          {style.label}
+                        </span>
+                        {item.changed && (
+                          <span className="text-[7px] font-mono px-1.5 py-0.5 rounded bg-[#EF9F27]/10 text-[#FDBA74] border border-[#EF9F27]/30">
+                            SHIFTED
+                          </span>
+                        )}
+                        {item.new && (
+                          <span className="text-[7px] font-mono px-1.5 py-0.5 rounded bg-[#378ADD]/10 text-[#93C5FD] border border-[#378ADD]/30">
+                            NEW
+                          </span>
+                        )}
+                      </div>
+                      
+                      <h4 className="text-xs font-mono font-semibold text-white leading-snug mb-1.5">
+                        {item.t}
+                      </h4>
+                      
+                      {item.tt ? (
+                        <p className="text-[11px] text-gray-400 leading-relaxed font-sans font-medium whitespace-pre-wrap">
+                          {item.tt}
+                        </p>
+                      ) : (
+                        <p className="text-[11px] text-gray-600 font-mono italic">
+                          NO_DESCRIPTION_PROVIDED
+                        </p>
+                      )}
+                    </div>
+                  );
+                })
+              ) : (
+                <div className="text-center py-16 text-gray-600 flex flex-col items-center justify-center gap-3 font-mono text-xs">
+                  <Sparkles size={16} className="text-gray-700 opacity-50 animate-pulse" />
+                  NO_DEADLINES_ON_THIS_DATE
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
+

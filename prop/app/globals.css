@@ -68,3 +68,16 @@ body {
 .animate-slide-in { animation: slideInLeft 0.5s ease forwards; }
 .animate-float { animation: float 3s ease-in-out infinite; }
 .animate-pulse-glow { animation: pulse-glow 2s ease-in-out infinite; }
+
+/* Mobile Bottom Sheet & Backdrop Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes slideUp {
+  from { transform: translateY(100%); }
+  to { transform: translateY(0); }
+}
+.animate-fade-in { animation: fadeIn 0.2s ease-out forwards; }
+.animate-slide-up { animation: slideUp 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+
